@@ -328,7 +328,10 @@ namespace DhonniMeyeAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() {
+                UserName = model.Email,
+                Email = model.Email,
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -339,35 +342,6 @@ namespace DhonniMeyeAPI.Controllers
 
             return Ok<string>("success");
         }
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[Route("Login")]
-        //public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = await UserManager.FindAsync(model.UserName, model.Password);
-        //        if (user != null)
-        //        {
-        //            await SignInAsync(user, model.RememberMe);
-        //            return RedirectToLocal(returnUrl);
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Invalid username or password.");
-        //        }
-        //    }
-
-        //    If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
-
-        //private async Task SignInAsync(ApplicationUser user, bool isPersistent)
-        //{
-        //    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-        //    var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-        //    AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-        //}
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
@@ -399,6 +373,34 @@ namespace DhonniMeyeAPI.Controllers
                 return GetErrorResult(result); 
             }
             return Ok();
+        }
+
+        [Route("editaccount")]
+        public async Task<IHttpActionResult> EditAccount(RegisterBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new ApplicationUser()
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                MiddleName = model.MiddleName,
+                LastName = model.LastName,
+                PhoneNumber=model.PhoneNumber
+            };
+
+            IdentityResult result = await UserManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok<string>("success");
         }
 
         protected override void Dispose(bool disposing)
