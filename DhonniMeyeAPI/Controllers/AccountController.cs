@@ -16,6 +16,9 @@ using Microsoft.Owin.Security.OAuth;
 using DhonniMeyeAPI.Models;
 using DhonniMeyeAPI.Providers;
 using DhonniMeyeAPI.Results;
+using DataAccess;
+using System.Linq;
+using System.Net;
 
 namespace DhonniMeyeAPI.Controllers
 {
@@ -67,6 +70,7 @@ namespace DhonniMeyeAPI.Controllers
         }
 
         // POST api/Account/Logout
+        [HttpPost]
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
@@ -384,7 +388,7 @@ namespace DhonniMeyeAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Get the existing student from the db
+            // Get the existing user from the userdb
             //var user = User.Identity
             // Get the current application user
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -397,7 +401,23 @@ namespace DhonniMeyeAPI.Controllers
 
             var result = await UserManager.UpdateAsync(user);
 
-            if (!result.Succeeded)
+            // Get the existing user from the thedb "Person"
+            using (TheDBEntities db = new TheDBEntities())
+            {
+                var userInfo = (from per in db.People
+                                join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID
+                                where per.rowguid.ToString() == user.Id
+                                join bentadd in db.BusinessEntityAddresses on bent.BusinessEntityID equals bentadd.BusinessEntityID
+                                join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
+                                join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
+                                join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
+                                join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
+                                select per).ToList().FirstOrDefault();
+                //userInfo. = "";
+
+            }
+
+                if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
@@ -411,18 +431,48 @@ namespace DhonniMeyeAPI.Controllers
         }
 
         [Route("accountinfo")]
-        public IHttpActionResult GetAccountInfo()
+        public HttpResponseMessage GetAccountInfo()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            var UserUpdateModel = new UserUpdateModel
+            using (TheDBEntities db = new TheDBEntities())
             {
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                MiddleName = user.MiddleName,
-                PhoneNumber = user.PhoneNumber
-            };
-            return Ok(UserUpdateModel);
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                
+                var userInfo = (from per in db.People
+                               join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
+                               join bentadd in db.BusinessEntityAddresses on bent.BusinessEntityID equals bentadd.BusinessEntityID
+                               join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
+                               join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
+                               join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
+                               join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
+                               select new {
+                                   Email = user.Email,
+                                   Title = per.Title,
+                                   FirstName = per.FirstName,
+                                   LastName = per.LastName,
+                                   MiddleName = per.MiddleName,
+                                   PhoneNumber = phone.PhoneNumber,
+                                   AddressLine1 = addr.AddressLine1,
+                                   AddressLine2 = addr.AddressLine2,
+                                   City = addr.City,
+                                   PostalCode = addr.PostalCode,
+                                   State = state.Name,
+                                   StateCode = state.StateProvinceCode,
+                                   AddressType = addtype.Name,
+                               }).ToList().FirstOrDefault();
+                if (userInfo!=null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, userInfo);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
+                }
+
+
+                
+            }
+               
+            
         }
 
         protected override void Dispose(bool disposing)

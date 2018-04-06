@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d77dff3ed9b24c2dac509759b2cdaf65" Name="Diagram1">
         <EntityTypeShape EntityType="TheDBModel.Product" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheDBModel.Address" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TheDBModel.ProductImage" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TheDBModel.BillOfMaterial" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="TheDBModel.Culture" Width="1.5" PointX="7.75" PointY="4.75" />
@@ -56,6 +55,20 @@
         <EntityTypeShape EntityType="TheDBModel.SpecialOfferProduct" Width="1.5" PointX="19.75" PointY="11.75" />
         <EntityTypeShape EntityType="TheDBModel.Store" Width="1.5" PointX="2.75" PointY="20.75" />
         <EntityTypeShape EntityType="TheDBModel.AllProduct" Width="1.5" PointX="5.375" PointY="20.75" />
+        <EntityTypeShape EntityType="TheDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="TheDBModel.AddressType" Width="1.5" PointX="13.75" PointY="21.75" />
+        <EntityTypeShape EntityType="TheDBModel.BusinessEntity" Width="1.5" PointX="21.75" PointY="14.75" />
+        <EntityTypeShape EntityType="TheDBModel.BusinessEntityAddress" Width="1.5" PointX="15.75" PointY="21.75" />
+        <EntityTypeShape EntityType="TheDBModel.BusinessEntityContact" Width="1.5" PointX="21.75" PointY="17.75" />
+        <EntityTypeShape EntityType="TheDBModel.ContactType" Width="1.5" PointX="17.75" PointY="21.75" />
+        <EntityTypeShape EntityType="TheDBModel.CountryRegion" Width="1.5" PointX="19.75" PointY="21.75" />
+        <EntityTypeShape EntityType="TheDBModel.EmailAddress" Width="1.5" PointX="21.75" PointY="20.75" />
+        <EntityTypeShape EntityType="TheDBModel.Password" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TheDBModel.Person" Width="1.5" PointX="22.75" PointY="3.75" />
+        <EntityTypeShape EntityType="TheDBModel.PersonPhone" Width="1.5" PointX="22.75" PointY="8.75" />
+        <EntityTypeShape EntityType="TheDBModel.PhoneNumberType" Width="1.5" PointX="22.75" PointY="11.75" />
+        <EntityTypeShape EntityType="TheDBModel.StateProvince" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="TheDBModel.Address" Width="1.5" PointX="7.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

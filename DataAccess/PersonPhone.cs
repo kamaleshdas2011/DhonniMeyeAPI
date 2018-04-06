@@ -12,16 +12,11 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Address
+    public partial class PersonPhone
     {
-        public int AddressID { get; set; }
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-        public string City { get; set; }
-        public int StateProvinceID { get; set; }
-        public string PostalCode { get; set; }
-        public System.Data.Entity.Spatial.DbGeography SpatialLocation { get; set; }
-        public System.Guid rowguid { get; set; }
+        public int BusinessEntityID { get; set; }
+        public string PhoneNumber { get; set; }
+        public int PhoneNumberTypeID { get; set; }
         public System.DateTime ModifiedDate { get; set; }
     }
 }

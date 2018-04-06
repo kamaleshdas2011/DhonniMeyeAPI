@@ -26,7 +26,6 @@ namespace DataAccess
         }
     
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<BillOfMaterial> BillOfMaterials { get; set; }
         public virtual DbSet<Culture> Cultures { get; set; }
@@ -76,5 +75,19 @@ namespace DataAccess
         public virtual DbSet<SpecialOfferProduct> SpecialOfferProducts { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<AllProduct> AllProducts { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<AddressType> AddressTypes { get; set; }
+        public virtual DbSet<BusinessEntity> BusinessEntities { get; set; }
+        public virtual DbSet<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+        public virtual DbSet<BusinessEntityContact> BusinessEntityContacts { get; set; }
+        public virtual DbSet<ContactType> ContactTypes { get; set; }
+        public virtual DbSet<CountryRegion> CountryRegions { get; set; }
+        public virtual DbSet<EmailAddress> EmailAddresses { get; set; }
+        public virtual DbSet<Password> Passwords { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<PersonPhone> PersonPhones { get; set; }
+        public virtual DbSet<PhoneNumberType> PhoneNumberTypes { get; set; }
+        public virtual DbSet<StateProvince> StateProvinces { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
     }
 }
