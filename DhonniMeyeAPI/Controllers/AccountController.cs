@@ -125,7 +125,7 @@ namespace DhonniMeyeAPI.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -258,9 +258,9 @@ namespace DhonniMeyeAPI.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -328,7 +328,8 @@ namespace DhonniMeyeAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() {
+            var user = new ApplicationUser()
+            {
                 UserName = model.Email,
                 Email = model.Email,
             };
@@ -370,30 +371,31 @@ namespace DhonniMeyeAPI.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }
 
         [Route("editaccount")]
-        public async Task<IHttpActionResult> EditAccount(RegisterBindingModel model)
+        public async Task<IHttpActionResult> EditAccount(UserUpdateModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser()
-            {
-                UserName = model.Email,
-                Email = model.Email,
-                FirstName = model.FirstName,
-                MiddleName = model.MiddleName,
-                LastName = model.LastName,
-                PhoneNumber=model.PhoneNumber
-            };
+            // Get the existing student from the db
+            //var user = User.Identity
+            // Get the current application user
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            user.UserName = model.Email;
+            user.Email = model.Email;
+            user.FirstName = model.FirstName;
+            user.MiddleName = model.MiddleName;
+            user.LastName = model.LastName;
+            user.PhoneNumber = model.PhoneNumber;
 
-            IdentityResult result = await UserManager.UpdateAsync(user);
+            var result = await UserManager.UpdateAsync(user);
 
             if (!result.Succeeded)
             {
@@ -401,6 +403,26 @@ namespace DhonniMeyeAPI.Controllers
             }
 
             return Ok<string>("success");
+
+
+
+
+
+        }
+
+        [Route("accountinfo")]
+        public IHttpActionResult GetAccountInfo()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var UserUpdateModel = new UserUpdateModel
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MiddleName = user.MiddleName,
+                PhoneNumber = user.PhoneNumber
+            };
+            return Ok(UserUpdateModel);
         }
 
         protected override void Dispose(bool disposing)

@@ -12,9 +12,14 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductCategory
+    public partial class CurrencyRate
     {
-        public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
+        public int CurrencyRateID { get; set; }
+        public System.DateTime CurrencyRateDate { get; set; }
+        public string FromCurrencyCode { get; set; }
+        public string ToCurrencyCode { get; set; }
+        public decimal AverageRate { get; set; }
+        public decimal EndOfDayRate { get; set; }
+        public System.DateTime ModifiedDate { get; set; }
     }
 }

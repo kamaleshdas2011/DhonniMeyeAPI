@@ -60,11 +60,6 @@ namespace DhonniMeyeAPI.Controllers
             return "value";
         }
 
-        // POST: api/UserActivity
-        public void Post([FromBody]User value)
-        {
-        }
-
         // PUT: api/UserActivity/5
         public void Put(int id, [FromBody]string value)
         {

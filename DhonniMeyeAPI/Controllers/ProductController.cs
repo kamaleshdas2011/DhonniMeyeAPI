@@ -9,21 +9,43 @@ using System.Transactions;
 
 namespace TheAPI.Controllers
 {
+    //[Authorize]
     public class ProductController : ApiController
     {
         // GET api/values
         [HttpGet]
         //[Authorize]
-        public HttpResponseMessage LoadProducts()
+        public HttpResponseMessage GetProducts()
         {
             try
             {
                 using (TheDBEntities db = new TheDBEntities())
                 {
-                    var prod = db.Products.ToList();
-                    if (prod != null)
+                    var rawprod = db.AllProducts.ToList().Take(10).Skip(0);//db.Products.ToList();
+                    //var prodlist = rawprod.Select(p => new
+                    //{
+                    //    ProductID = p.ProductID,
+                    //    Name = p.Name,
+                    //    ListPrice = p.ListPrice,
+                    //    Color = p.Color,
+
+                    //}).ToList();
+                    var prodlist = (from p in db.AllProducts
+                              join img in db.ProductPhotoes
+                              on p.ProductID equals img.ProductPhotoID
+                              select new
+                              {
+                                  ProductID = p.ProductID,
+                                  Name = p.Name,
+                                  ListPrice = p.ListPrice,
+                                  Color = p.Color,
+                                  LargePhoto = img.LargePhoto,
+                                  ThumbNailPhoto = img.ThumbNailPhoto,
+                              }).ToList();
+                    
+                    if (prodlist != null)
                     {
-                        return Request.CreateResponse(HttpStatusCode.OK, prod);
+                        return Request.CreateResponse(HttpStatusCode.OK, prodlist);
                     }
                     else
                     {

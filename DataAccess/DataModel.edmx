@@ -38,16 +38,6 @@ warning 6002: The table/view 'TheDB.dbo.Address' does not have a primary key def
           <Property Name="ProductThumb" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'TheDB.dbo.ProductCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ProductCategory">
-          <Key>
-            <PropertyRef Name="CategoryID" />
-            <PropertyRef Name="CategoryName" />
-          </Key>
-          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CategoryName" Type="varchar" MaxLength="250" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'TheDB.dbo.ProductImage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ProductImage">
           <Key>
@@ -62,26 +52,950 @@ warning 6002: The table/view 'TheDB.dbo.ProductImage' does not have a primary ke
           <Property Name="ImageFormat" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'TheDB.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="User">
+warning 6002: The table/view 'TheDB.Production.AllProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AllProduct">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ProductNumber" />
+            <PropertyRef Name="MakeFlag" />
+            <PropertyRef Name="FinishedGoodsFlag" />
+            <PropertyRef Name="SafetyStockLevel" />
+            <PropertyRef Name="ReorderPoint" />
+            <PropertyRef Name="StandardCost" />
+            <PropertyRef Name="ListPrice" />
+            <PropertyRef Name="DaysToManufacture" />
+            <PropertyRef Name="SellStartDate" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
           </Key>
-          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="100" />
-          <Property Name="MiddleName" Type="varchar" MaxLength="100" />
-          <Property Name="LastName" Type="varchar" MaxLength="100" />
-          <Property Name="Gender" Type="varchar" MaxLength="10" />
-          <Property Name="Email" Type="varchar" MaxLength="200" />
-          <Property Name="DOB" Type="varchar" MaxLength="15" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductNumber" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="MakeFlag" Type="bit" Nullable="false" />
+          <Property Name="FinishedGoodsFlag" Type="bit" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="15" />
+          <Property Name="SafetyStockLevel" Type="smallint" Nullable="false" />
+          <Property Name="ReorderPoint" Type="smallint" Nullable="false" />
+          <Property Name="StandardCost" Type="money" Nullable="false" />
+          <Property Name="ListPrice" Type="money" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="5" />
+          <Property Name="SizeUnitMeasureCode" Type="nchar" MaxLength="3" />
+          <Property Name="WeightUnitMeasureCode" Type="nchar" MaxLength="3" />
+          <Property Name="Weight" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="DaysToManufacture" Type="int" Nullable="false" />
+          <Property Name="ProductLine" Type="nchar" MaxLength="2" />
+          <Property Name="Class" Type="nchar" MaxLength="2" />
+          <Property Name="Style" Type="nchar" MaxLength="2" />
+          <Property Name="ProductSubcategoryID" Type="int" />
+          <Property Name="ProductModelID" Type="int" />
+          <Property Name="SellStartDate" Type="datetime" Nullable="false" />
+          <Property Name="SellEndDate" Type="datetime" />
+          <Property Name="DiscontinuedDate" Type="datetime" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'TheDB.dbo.UserActivity' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="UserActivity">
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
-          <Property Name="Cart" Type="nvarchar(max)" />
-          <Property Name="Wish" Type="nvarchar(max)" />
-        </EntityType>-->
+warning 6002: The table/view 'TheDB.Production.BillOfMaterials' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BillOfMaterials">
+          <Key>
+            <PropertyRef Name="BillOfMaterialsID" />
+            <PropertyRef Name="ComponentID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="UnitMeasureCode" />
+            <PropertyRef Name="BOMLevel" />
+            <PropertyRef Name="PerAssemblyQty" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BillOfMaterialsID" Type="int" Nullable="false" />
+          <Property Name="ProductAssemblyID" Type="int" />
+          <Property Name="ComponentID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="UnitMeasureCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="BOMLevel" Type="smallint" Nullable="false" />
+          <Property Name="PerAssemblyQty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.Culture' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Culture">
+          <Key>
+            <PropertyRef Name="CultureID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CultureID" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'hierarchyid' is currently not supported for the target Entity Framework version; the column 'DocumentNode' in the table 'TheDB.Production.Document' was excluded.
+warning 6002: The table/view 'TheDB.Production.Document' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Owner" />
+            <PropertyRef Name="FolderFlag" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="FileExtension" />
+            <PropertyRef Name="Revision" />
+            <PropertyRef Name="ChangeNumber" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="DocumentLevel" Type="smallint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Owner" Type="int" Nullable="false" />
+          <Property Name="FolderFlag" Type="bit" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="FileExtension" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Revision" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="ChangeNumber" Type="int" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="DocumentSummary" Type="nvarchar(max)" />
+          <Property Name="Document" Type="varbinary(max)" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.Illustration' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Illustration">
+          <Key>
+            <PropertyRef Name="IllustrationID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="IllustrationID" Type="int" Nullable="false" />
+          <Property Name="Diagram" Type="xml" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.Location' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CostRate" />
+            <PropertyRef Name="Availability" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="LocationID" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostRate" Type="smallmoney" Nullable="false" />
+          <Property Name="Availability" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductCostHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductCostHistory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="StandardCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="StandardCost" Type="money" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductDescription' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductDescription">
+          <Key>
+            <PropertyRef Name="ProductDescriptionID" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductDescriptionID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'hierarchyid' is currently not supported for the target Entity Framework version; the column 'DocumentNode' in the table 'TheDB.Production.ProductDocument' was excluded.
+warning 6002: The table/view 'TheDB.Production.ProductDocument' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductDocument">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductInventory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="Shelf" />
+            <PropertyRef Name="Bin" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="smallint" Nullable="false" />
+          <Property Name="Shelf" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Bin" Type="tinyint" Nullable="false" />
+          <Property Name="Quantity" Type="smallint" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductListPriceHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductListPriceHistory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="ListPrice" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="ListPrice" Type="money" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductModel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductModel">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductModelID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CatalogDescription" Type="xml" />
+          <Property Name="Instructions" Type="xml" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductModelIllustration' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductModelIllustration">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="IllustrationID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductModelID" Type="int" Nullable="false" />
+          <Property Name="IllustrationID" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductModelProductDescriptionCulture' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductModelProductDescriptionCulture">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="ProductDescriptionID" />
+            <PropertyRef Name="CultureID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductModelID" Type="int" Nullable="false" />
+          <Property Name="ProductDescriptionID" Type="int" Nullable="false" />
+          <Property Name="CultureID" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductPhoto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductPhotoID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductPhotoID" Type="int" Nullable="false" />
+          <Property Name="ThumbNailPhoto" Type="varbinary(max)" />
+          <Property Name="ThumbnailPhotoFileName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LargePhoto" Type="varbinary(max)" />
+          <Property Name="LargePhotoFileName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductProductPhoto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ProductPhotoID" />
+            <PropertyRef Name="Primary" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductPhotoID" Type="int" Nullable="false" />
+          <Property Name="Primary" Type="bit" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductReview">
+          <Key>
+            <PropertyRef Name="ProductReviewID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ReviewerName" />
+            <PropertyRef Name="ReviewDate" />
+            <PropertyRef Name="EmailAddress" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductReviewID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ReviewerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReviewDate" Type="datetime" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="3850" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ProductSubcategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductSubcategory">
+          <Key>
+            <PropertyRef Name="ProductSubcategoryID" />
+            <PropertyRef Name="ProductCategoryID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductSubcategoryID" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.ScrapReason' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ScrapReason">
+          <Key>
+            <PropertyRef Name="ScrapReasonID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ScrapReasonID" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.TransactionHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TransactionHistory">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ReferenceOrderID" />
+            <PropertyRef Name="ReferenceOrderLineID" />
+            <PropertyRef Name="TransactionDate" />
+            <PropertyRef Name="TransactionType" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ActualCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ReferenceOrderID" Type="int" Nullable="false" />
+          <Property Name="ReferenceOrderLineID" Type="int" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="TransactionType" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="ActualCost" Type="money" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.TransactionHistoryArchive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TransactionHistoryArchive">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ReferenceOrderID" />
+            <PropertyRef Name="ReferenceOrderLineID" />
+            <PropertyRef Name="TransactionDate" />
+            <PropertyRef Name="TransactionType" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ActualCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ReferenceOrderID" Type="int" Nullable="false" />
+          <Property Name="ReferenceOrderLineID" Type="int" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="TransactionType" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="ActualCost" Type="money" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.UnitMeasure' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UnitMeasure">
+          <Key>
+            <PropertyRef Name="UnitMeasureCode" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="UnitMeasureCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.WorkOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="WorkOrderID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="OrderQty" />
+            <PropertyRef Name="StockedQty" />
+            <PropertyRef Name="ScrappedQty" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="DueDate" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="WorkOrderID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="OrderQty" Type="int" Nullable="false" />
+          <Property Name="StockedQty" Type="int" Nullable="false" />
+          <Property Name="ScrappedQty" Type="smallint" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="DueDate" Type="datetime" Nullable="false" />
+          <Property Name="ScrapReasonID" Type="smallint" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Production.WorkOrderRouting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="WorkOrderRouting">
+          <Key>
+            <PropertyRef Name="WorkOrderID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="OperationSequence" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="ScheduledStartDate" />
+            <PropertyRef Name="ScheduledEndDate" />
+            <PropertyRef Name="PlannedCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="WorkOrderID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="OperationSequence" Type="smallint" Nullable="false" />
+          <Property Name="LocationID" Type="smallint" Nullable="false" />
+          <Property Name="ScheduledStartDate" Type="datetime" Nullable="false" />
+          <Property Name="ScheduledEndDate" Type="datetime" Nullable="false" />
+          <Property Name="ActualStartDate" Type="datetime" />
+          <Property Name="ActualEndDate" Type="datetime" />
+          <Property Name="ActualResourceHrs" Type="decimal" Precision="9" Scale="4" />
+          <Property Name="PlannedCost" Type="money" Nullable="false" />
+          <Property Name="ActualCost" Type="money" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Purchasing.ProductVendor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductVendor">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="AverageLeadTime" />
+            <PropertyRef Name="StandardPrice" />
+            <PropertyRef Name="MinOrderQty" />
+            <PropertyRef Name="MaxOrderQty" />
+            <PropertyRef Name="UnitMeasureCode" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="BusinessEntityID" Type="int" Nullable="false" />
+          <Property Name="AverageLeadTime" Type="int" Nullable="false" />
+          <Property Name="StandardPrice" Type="money" Nullable="false" />
+          <Property Name="LastReceiptCost" Type="money" />
+          <Property Name="LastReceiptDate" Type="datetime" />
+          <Property Name="MinOrderQty" Type="int" Nullable="false" />
+          <Property Name="MaxOrderQty" Type="int" Nullable="false" />
+          <Property Name="OnOrderQty" Type="int" />
+          <Property Name="UnitMeasureCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Purchasing.PurchaseOrderDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PurchaseOrderDetail">
+          <Key>
+            <PropertyRef Name="PurchaseOrderID" />
+            <PropertyRef Name="PurchaseOrderDetailID" />
+            <PropertyRef Name="DueDate" />
+            <PropertyRef Name="OrderQty" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="LineTotal" />
+            <PropertyRef Name="ReceivedQty" />
+            <PropertyRef Name="RejectedQty" />
+            <PropertyRef Name="StockedQty" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="PurchaseOrderID" Type="int" Nullable="false" />
+          <Property Name="PurchaseOrderDetailID" Type="int" Nullable="false" />
+          <Property Name="DueDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderQty" Type="smallint" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="money" Nullable="false" />
+          <Property Name="LineTotal" Type="money" Nullable="false" />
+          <Property Name="ReceivedQty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="RejectedQty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="StockedQty" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Purchasing.PurchaseOrderHeader' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PurchaseOrderHeader">
+          <Key>
+            <PropertyRef Name="PurchaseOrderID" />
+            <PropertyRef Name="RevisionNumber" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="ShipMethodID" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="SubTotal" />
+            <PropertyRef Name="TaxAmt" />
+            <PropertyRef Name="Freight" />
+            <PropertyRef Name="TotalDue" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="PurchaseOrderID" Type="int" Nullable="false" />
+          <Property Name="RevisionNumber" Type="tinyint" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="ShipMethodID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="ShipDate" Type="datetime" />
+          <Property Name="SubTotal" Type="money" Nullable="false" />
+          <Property Name="TaxAmt" Type="money" Nullable="false" />
+          <Property Name="Freight" Type="money" Nullable="false" />
+          <Property Name="TotalDue" Type="money" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Purchasing.ShipMethod' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ShipMethod">
+          <Key>
+            <PropertyRef Name="ShipMethodID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ShipBase" />
+            <PropertyRef Name="ShipRate" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ShipMethodID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShipBase" Type="money" Nullable="false" />
+          <Property Name="ShipRate" Type="money" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Purchasing.Vendor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CreditRating" />
+            <PropertyRef Name="PreferredVendorStatus" />
+            <PropertyRef Name="ActiveFlag" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="int" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreditRating" Type="tinyint" Nullable="false" />
+          <Property Name="PreferredVendorStatus" Type="bit" Nullable="false" />
+          <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+          <Property Name="PurchasingWebServiceURL" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.CountryRegionCurrency' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CountryRegionCurrency">
+          <Key>
+            <PropertyRef Name="CountryRegionCode" />
+            <PropertyRef Name="CurrencyCode" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CountryRegionCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.CreditCard' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="CreditCardID" />
+            <PropertyRef Name="CardType" />
+            <PropertyRef Name="CardNumber" />
+            <PropertyRef Name="ExpMonth" />
+            <PropertyRef Name="ExpYear" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CreditCardID" Type="int" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="ExpMonth" Type="tinyint" Nullable="false" />
+          <Property Name="ExpYear" Type="smallint" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.Currency' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyCode" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CurrencyCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.CurrencyRate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CurrencyRate">
+          <Key>
+            <PropertyRef Name="CurrencyRateID" />
+            <PropertyRef Name="CurrencyRateDate" />
+            <PropertyRef Name="FromCurrencyCode" />
+            <PropertyRef Name="ToCurrencyCode" />
+            <PropertyRef Name="AverageRate" />
+            <PropertyRef Name="EndOfDayRate" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CurrencyRateID" Type="int" Nullable="false" />
+          <Property Name="CurrencyRateDate" Type="datetime" Nullable="false" />
+          <Property Name="FromCurrencyCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="ToCurrencyCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="AverageRate" Type="money" Nullable="false" />
+          <Property Name="EndOfDayRate" Type="money" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" />
+          <Property Name="StoreID" Type="int" />
+          <Property Name="TerritoryID" Type="int" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.PersonCreditCard' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PersonCreditCard">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="CreditCardID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="int" Nullable="false" />
+          <Property Name="CreditCardID" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesOrderDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesOrderDetail">
+          <Key>
+            <PropertyRef Name="SalesOrderID" />
+            <PropertyRef Name="SalesOrderDetailID" />
+            <PropertyRef Name="OrderQty" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="SpecialOfferID" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="UnitPriceDiscount" />
+            <PropertyRef Name="LineTotal" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesOrderID" Type="int" Nullable="false" />
+          <Property Name="SalesOrderDetailID" Type="int" Nullable="false" />
+          <Property Name="CarrierTrackingNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="OrderQty" Type="smallint" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="SpecialOfferID" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="money" Nullable="false" />
+          <Property Name="UnitPriceDiscount" Type="money" Nullable="false" />
+          <Property Name="LineTotal" Type="numeric" Precision="38" Scale="6" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesOrderHeader' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesOrderHeader">
+          <Key>
+            <PropertyRef Name="SalesOrderID" />
+            <PropertyRef Name="RevisionNumber" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="DueDate" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="OnlineOrderFlag" />
+            <PropertyRef Name="SalesOrderNumber" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="BillToAddressID" />
+            <PropertyRef Name="ShipToAddressID" />
+            <PropertyRef Name="ShipMethodID" />
+            <PropertyRef Name="SubTotal" />
+            <PropertyRef Name="TaxAmt" />
+            <PropertyRef Name="Freight" />
+            <PropertyRef Name="TotalDue" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesOrderID" Type="int" Nullable="false" />
+          <Property Name="RevisionNumber" Type="tinyint" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="DueDate" Type="datetime" Nullable="false" />
+          <Property Name="ShipDate" Type="datetime" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="OnlineOrderFlag" Type="bit" Nullable="false" />
+          <Property Name="SalesOrderNumber" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PurchaseOrderNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="SalesPersonID" Type="int" />
+          <Property Name="TerritoryID" Type="int" />
+          <Property Name="BillToAddressID" Type="int" Nullable="false" />
+          <Property Name="ShipToAddressID" Type="int" Nullable="false" />
+          <Property Name="ShipMethodID" Type="int" Nullable="false" />
+          <Property Name="CreditCardID" Type="int" />
+          <Property Name="CreditCardApprovalCode" Type="varchar" MaxLength="15" />
+          <Property Name="CurrencyRateID" Type="int" />
+          <Property Name="SubTotal" Type="money" Nullable="false" />
+          <Property Name="TaxAmt" Type="money" Nullable="false" />
+          <Property Name="Freight" Type="money" Nullable="false" />
+          <Property Name="TotalDue" Type="money" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="128" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesOrderHeaderSalesReason' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesOrderHeaderSalesReason">
+          <Key>
+            <PropertyRef Name="SalesOrderID" />
+            <PropertyRef Name="SalesReasonID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesOrderID" Type="int" Nullable="false" />
+          <Property Name="SalesReasonID" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesPerson' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesPerson">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="Bonus" />
+            <PropertyRef Name="CommissionPct" />
+            <PropertyRef Name="SalesYTD" />
+            <PropertyRef Name="SalesLastYear" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="int" Nullable="false" />
+          <Property Name="TerritoryID" Type="int" />
+          <Property Name="SalesQuota" Type="money" />
+          <Property Name="Bonus" Type="money" Nullable="false" />
+          <Property Name="CommissionPct" Type="smallmoney" Nullable="false" />
+          <Property Name="SalesYTD" Type="money" Nullable="false" />
+          <Property Name="SalesLastYear" Type="money" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesPersonQuotaHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesPersonQuotaHistory">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="QuotaDate" />
+            <PropertyRef Name="SalesQuota" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="int" Nullable="false" />
+          <Property Name="QuotaDate" Type="datetime" Nullable="false" />
+          <Property Name="SalesQuota" Type="money" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesReason' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesReason">
+          <Key>
+            <PropertyRef Name="SalesReasonID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ReasonType" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesReasonID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReasonType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesTaxRate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesTaxRate">
+          <Key>
+            <PropertyRef Name="SalesTaxRateID" />
+            <PropertyRef Name="StateProvinceID" />
+            <PropertyRef Name="TaxType" />
+            <PropertyRef Name="TaxRate" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesTaxRateID" Type="int" Nullable="false" />
+          <Property Name="StateProvinceID" Type="int" Nullable="false" />
+          <Property Name="TaxType" Type="tinyint" Nullable="false" />
+          <Property Name="TaxRate" Type="smallmoney" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesTerritory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesTerritory">
+          <Key>
+            <PropertyRef Name="TerritoryID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CountryRegionCode" />
+            <PropertyRef Name="Group" />
+            <PropertyRef Name="SalesYTD" />
+            <PropertyRef Name="SalesLastYear" />
+            <PropertyRef Name="CostYTD" />
+            <PropertyRef Name="CostLastYear" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="TerritoryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryRegionCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Group" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SalesYTD" Type="money" Nullable="false" />
+          <Property Name="SalesLastYear" Type="money" Nullable="false" />
+          <Property Name="CostYTD" Type="money" Nullable="false" />
+          <Property Name="CostLastYear" Type="money" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SalesTerritoryHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesTerritoryHistory">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="TerritoryID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="int" Nullable="false" />
+          <Property Name="TerritoryID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.ShoppingCartItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ShoppingCartItem">
+          <Key>
+            <PropertyRef Name="ShoppingCartItemID" />
+            <PropertyRef Name="ShoppingCartID" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ShoppingCartItemID" Type="int" Nullable="false" />
+          <Property Name="ShoppingCartID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SpecialOffer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SpecialOffer">
+          <Key>
+            <PropertyRef Name="SpecialOfferID" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="DiscountPct" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="EndDate" />
+            <PropertyRef Name="MinQty" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SpecialOfferID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DiscountPct" Type="smallmoney" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="MinQty" Type="int" Nullable="false" />
+          <Property Name="MaxQty" Type="int" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.SpecialOfferProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SpecialOfferProduct">
+          <Key>
+            <PropertyRef Name="SpecialOfferID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SpecialOfferID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheDB.Sales.Store' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SalesPersonID" Type="int" />
+          <Property Name="Demographics" Type="xml" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="TheDBModelStoreContainer">
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" store:Type="Tables" store:Schema="dbo">
@@ -96,12 +1010,6 @@ warning 6013: The table/view 'TheDB.dbo.UserActivity' does not have a primary ke
     [Address].[AddressType] AS [AddressType]
     FROM [dbo].[Address] AS [Address]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ProductCategory].[CategoryID] AS [CategoryID], 
-    [ProductCategory].[CategoryName] AS [CategoryName]
-    FROM [dbo].[ProductCategory] AS [ProductCategory]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="ProductImage" EntityType="Self.ProductImage" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ProductImage].[ImageId] AS [ImageId], 
@@ -113,16 +1021,554 @@ warning 6013: The table/view 'TheDB.dbo.UserActivity' does not have a primary ke
     [ProductImage].[ImageFormat] AS [ImageFormat]
     FROM [dbo].[ProductImage] AS [ProductImage]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="AllProduct" EntityType="Self.AllProduct" store:Type="Tables" store:Schema="Production">
             <DefiningQuery>SELECT 
-    [User].[UserId] AS [UserId], 
-    [User].[FirstName] AS [FirstName], 
-    [User].[MiddleName] AS [MiddleName], 
-    [User].[LastName] AS [LastName], 
-    [User].[Gender] AS [Gender], 
-    [User].[Email] AS [Email], 
-    [User].[DOB] AS [DOB]
-    FROM [dbo].[User] AS [User]</DefiningQuery>
+    [AllProduct].[ProductID] AS [ProductID], 
+    [AllProduct].[Name] AS [Name], 
+    [AllProduct].[ProductNumber] AS [ProductNumber], 
+    [AllProduct].[MakeFlag] AS [MakeFlag], 
+    [AllProduct].[FinishedGoodsFlag] AS [FinishedGoodsFlag], 
+    [AllProduct].[Color] AS [Color], 
+    [AllProduct].[SafetyStockLevel] AS [SafetyStockLevel], 
+    [AllProduct].[ReorderPoint] AS [ReorderPoint], 
+    [AllProduct].[StandardCost] AS [StandardCost], 
+    [AllProduct].[ListPrice] AS [ListPrice], 
+    [AllProduct].[Size] AS [Size], 
+    [AllProduct].[SizeUnitMeasureCode] AS [SizeUnitMeasureCode], 
+    [AllProduct].[WeightUnitMeasureCode] AS [WeightUnitMeasureCode], 
+    [AllProduct].[Weight] AS [Weight], 
+    [AllProduct].[DaysToManufacture] AS [DaysToManufacture], 
+    [AllProduct].[ProductLine] AS [ProductLine], 
+    [AllProduct].[Class] AS [Class], 
+    [AllProduct].[Style] AS [Style], 
+    [AllProduct].[ProductSubcategoryID] AS [ProductSubcategoryID], 
+    [AllProduct].[ProductModelID] AS [ProductModelID], 
+    [AllProduct].[SellStartDate] AS [SellStartDate], 
+    [AllProduct].[SellEndDate] AS [SellEndDate], 
+    [AllProduct].[DiscontinuedDate] AS [DiscontinuedDate], 
+    [AllProduct].[rowguid] AS [rowguid], 
+    [AllProduct].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[AllProduct] AS [AllProduct]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BillOfMaterials" EntityType="Self.BillOfMaterials" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [BillOfMaterials].[BillOfMaterialsID] AS [BillOfMaterialsID], 
+    [BillOfMaterials].[ProductAssemblyID] AS [ProductAssemblyID], 
+    [BillOfMaterials].[ComponentID] AS [ComponentID], 
+    [BillOfMaterials].[StartDate] AS [StartDate], 
+    [BillOfMaterials].[EndDate] AS [EndDate], 
+    [BillOfMaterials].[UnitMeasureCode] AS [UnitMeasureCode], 
+    [BillOfMaterials].[BOMLevel] AS [BOMLevel], 
+    [BillOfMaterials].[PerAssemblyQty] AS [PerAssemblyQty], 
+    [BillOfMaterials].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[BillOfMaterials] AS [BillOfMaterials]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Culture" EntityType="Self.Culture" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [Culture].[CultureID] AS [CultureID], 
+    [Culture].[Name] AS [Name], 
+    [Culture].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[Culture] AS [Culture]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Document" EntityType="Self.Document" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [Document].[DocumentLevel] AS [DocumentLevel], 
+    [Document].[Title] AS [Title], 
+    [Document].[Owner] AS [Owner], 
+    [Document].[FolderFlag] AS [FolderFlag], 
+    [Document].[FileName] AS [FileName], 
+    [Document].[FileExtension] AS [FileExtension], 
+    [Document].[Revision] AS [Revision], 
+    [Document].[ChangeNumber] AS [ChangeNumber], 
+    [Document].[Status] AS [Status], 
+    [Document].[DocumentSummary] AS [DocumentSummary], 
+    [Document].[Document] AS [Document], 
+    [Document].[rowguid] AS [rowguid], 
+    [Document].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[Document] AS [Document]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Illustration" EntityType="Self.Illustration" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [Illustration].[IllustrationID] AS [IllustrationID], 
+    [Illustration].[Diagram] AS [Diagram], 
+    [Illustration].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[Illustration] AS [Illustration]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Location" EntityType="Self.Location" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [Location].[LocationID] AS [LocationID], 
+    [Location].[Name] AS [Name], 
+    [Location].[CostRate] AS [CostRate], 
+    [Location].[Availability] AS [Availability], 
+    [Location].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[Location] AS [Location]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductCategory].[ProductCategoryID] AS [ProductCategoryID], 
+    [ProductCategory].[Name] AS [Name], 
+    [ProductCategory].[rowguid] AS [rowguid], 
+    [ProductCategory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductCategory] AS [ProductCategory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductCostHistory" EntityType="Self.ProductCostHistory" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductCostHistory].[ProductID] AS [ProductID], 
+    [ProductCostHistory].[StartDate] AS [StartDate], 
+    [ProductCostHistory].[EndDate] AS [EndDate], 
+    [ProductCostHistory].[StandardCost] AS [StandardCost], 
+    [ProductCostHistory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductCostHistory] AS [ProductCostHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductDescription" EntityType="Self.ProductDescription" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductDescription].[ProductDescriptionID] AS [ProductDescriptionID], 
+    [ProductDescription].[Description] AS [Description], 
+    [ProductDescription].[rowguid] AS [rowguid], 
+    [ProductDescription].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductDescription] AS [ProductDescription]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductDocument" EntityType="Self.ProductDocument" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductDocument].[ProductID] AS [ProductID], 
+    [ProductDocument].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductDocument] AS [ProductDocument]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductInventory" EntityType="Self.ProductInventory" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductInventory].[ProductID] AS [ProductID], 
+    [ProductInventory].[LocationID] AS [LocationID], 
+    [ProductInventory].[Shelf] AS [Shelf], 
+    [ProductInventory].[Bin] AS [Bin], 
+    [ProductInventory].[Quantity] AS [Quantity], 
+    [ProductInventory].[rowguid] AS [rowguid], 
+    [ProductInventory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductInventory] AS [ProductInventory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductListPriceHistory" EntityType="Self.ProductListPriceHistory" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductListPriceHistory].[ProductID] AS [ProductID], 
+    [ProductListPriceHistory].[StartDate] AS [StartDate], 
+    [ProductListPriceHistory].[EndDate] AS [EndDate], 
+    [ProductListPriceHistory].[ListPrice] AS [ListPrice], 
+    [ProductListPriceHistory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductListPriceHistory] AS [ProductListPriceHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductModel" EntityType="Self.ProductModel" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductModel].[ProductModelID] AS [ProductModelID], 
+    [ProductModel].[Name] AS [Name], 
+    [ProductModel].[CatalogDescription] AS [CatalogDescription], 
+    [ProductModel].[Instructions] AS [Instructions], 
+    [ProductModel].[rowguid] AS [rowguid], 
+    [ProductModel].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductModel] AS [ProductModel]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductModelIllustration" EntityType="Self.ProductModelIllustration" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductModelIllustration].[ProductModelID] AS [ProductModelID], 
+    [ProductModelIllustration].[IllustrationID] AS [IllustrationID], 
+    [ProductModelIllustration].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductModelIllustration] AS [ProductModelIllustration]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductModelProductDescriptionCulture" EntityType="Self.ProductModelProductDescriptionCulture" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductModelProductDescriptionCulture].[ProductModelID] AS [ProductModelID], 
+    [ProductModelProductDescriptionCulture].[ProductDescriptionID] AS [ProductDescriptionID], 
+    [ProductModelProductDescriptionCulture].[CultureID] AS [CultureID], 
+    [ProductModelProductDescriptionCulture].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductModelProductDescriptionCulture] AS [ProductModelProductDescriptionCulture]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductPhoto" EntityType="Self.ProductPhoto" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductPhoto].[ProductPhotoID] AS [ProductPhotoID], 
+    [ProductPhoto].[ThumbNailPhoto] AS [ThumbNailPhoto], 
+    [ProductPhoto].[ThumbnailPhotoFileName] AS [ThumbnailPhotoFileName], 
+    [ProductPhoto].[LargePhoto] AS [LargePhoto], 
+    [ProductPhoto].[LargePhotoFileName] AS [LargePhotoFileName], 
+    [ProductPhoto].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductPhoto] AS [ProductPhoto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductProductPhoto" EntityType="Self.ProductProductPhoto" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductProductPhoto].[ProductID] AS [ProductID], 
+    [ProductProductPhoto].[ProductPhotoID] AS [ProductPhotoID], 
+    [ProductProductPhoto].[Primary] AS [Primary], 
+    [ProductProductPhoto].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductProductPhoto] AS [ProductProductPhoto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductReview" EntityType="Self.ProductReview" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductReview].[ProductReviewID] AS [ProductReviewID], 
+    [ProductReview].[ProductID] AS [ProductID], 
+    [ProductReview].[ReviewerName] AS [ReviewerName], 
+    [ProductReview].[ReviewDate] AS [ReviewDate], 
+    [ProductReview].[EmailAddress] AS [EmailAddress], 
+    [ProductReview].[Rating] AS [Rating], 
+    [ProductReview].[Comments] AS [Comments], 
+    [ProductReview].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductReview] AS [ProductReview]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductSubcategory" EntityType="Self.ProductSubcategory" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ProductSubcategory].[ProductSubcategoryID] AS [ProductSubcategoryID], 
+    [ProductSubcategory].[ProductCategoryID] AS [ProductCategoryID], 
+    [ProductSubcategory].[Name] AS [Name], 
+    [ProductSubcategory].[rowguid] AS [rowguid], 
+    [ProductSubcategory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ProductSubcategory] AS [ProductSubcategory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ScrapReason" EntityType="Self.ScrapReason" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [ScrapReason].[ScrapReasonID] AS [ScrapReasonID], 
+    [ScrapReason].[Name] AS [Name], 
+    [ScrapReason].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[ScrapReason] AS [ScrapReason]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TransactionHistory" EntityType="Self.TransactionHistory" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [TransactionHistory].[TransactionID] AS [TransactionID], 
+    [TransactionHistory].[ProductID] AS [ProductID], 
+    [TransactionHistory].[ReferenceOrderID] AS [ReferenceOrderID], 
+    [TransactionHistory].[ReferenceOrderLineID] AS [ReferenceOrderLineID], 
+    [TransactionHistory].[TransactionDate] AS [TransactionDate], 
+    [TransactionHistory].[TransactionType] AS [TransactionType], 
+    [TransactionHistory].[Quantity] AS [Quantity], 
+    [TransactionHistory].[ActualCost] AS [ActualCost], 
+    [TransactionHistory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[TransactionHistory] AS [TransactionHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TransactionHistoryArchive" EntityType="Self.TransactionHistoryArchive" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [TransactionHistoryArchive].[TransactionID] AS [TransactionID], 
+    [TransactionHistoryArchive].[ProductID] AS [ProductID], 
+    [TransactionHistoryArchive].[ReferenceOrderID] AS [ReferenceOrderID], 
+    [TransactionHistoryArchive].[ReferenceOrderLineID] AS [ReferenceOrderLineID], 
+    [TransactionHistoryArchive].[TransactionDate] AS [TransactionDate], 
+    [TransactionHistoryArchive].[TransactionType] AS [TransactionType], 
+    [TransactionHistoryArchive].[Quantity] AS [Quantity], 
+    [TransactionHistoryArchive].[ActualCost] AS [ActualCost], 
+    [TransactionHistoryArchive].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[TransactionHistoryArchive] AS [TransactionHistoryArchive]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UnitMeasure" EntityType="Self.UnitMeasure" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [UnitMeasure].[UnitMeasureCode] AS [UnitMeasureCode], 
+    [UnitMeasure].[Name] AS [Name], 
+    [UnitMeasure].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[UnitMeasure] AS [UnitMeasure]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WorkOrder" EntityType="Self.WorkOrder" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [WorkOrder].[WorkOrderID] AS [WorkOrderID], 
+    [WorkOrder].[ProductID] AS [ProductID], 
+    [WorkOrder].[OrderQty] AS [OrderQty], 
+    [WorkOrder].[StockedQty] AS [StockedQty], 
+    [WorkOrder].[ScrappedQty] AS [ScrappedQty], 
+    [WorkOrder].[StartDate] AS [StartDate], 
+    [WorkOrder].[EndDate] AS [EndDate], 
+    [WorkOrder].[DueDate] AS [DueDate], 
+    [WorkOrder].[ScrapReasonID] AS [ScrapReasonID], 
+    [WorkOrder].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[WorkOrder] AS [WorkOrder]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WorkOrderRouting" EntityType="Self.WorkOrderRouting" store:Type="Tables" store:Schema="Production">
+            <DefiningQuery>SELECT 
+    [WorkOrderRouting].[WorkOrderID] AS [WorkOrderID], 
+    [WorkOrderRouting].[ProductID] AS [ProductID], 
+    [WorkOrderRouting].[OperationSequence] AS [OperationSequence], 
+    [WorkOrderRouting].[LocationID] AS [LocationID], 
+    [WorkOrderRouting].[ScheduledStartDate] AS [ScheduledStartDate], 
+    [WorkOrderRouting].[ScheduledEndDate] AS [ScheduledEndDate], 
+    [WorkOrderRouting].[ActualStartDate] AS [ActualStartDate], 
+    [WorkOrderRouting].[ActualEndDate] AS [ActualEndDate], 
+    [WorkOrderRouting].[ActualResourceHrs] AS [ActualResourceHrs], 
+    [WorkOrderRouting].[PlannedCost] AS [PlannedCost], 
+    [WorkOrderRouting].[ActualCost] AS [ActualCost], 
+    [WorkOrderRouting].[ModifiedDate] AS [ModifiedDate]
+    FROM [Production].[WorkOrderRouting] AS [WorkOrderRouting]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductVendor" EntityType="Self.ProductVendor" store:Type="Tables" store:Schema="Purchasing">
+            <DefiningQuery>SELECT 
+    [ProductVendor].[ProductID] AS [ProductID], 
+    [ProductVendor].[BusinessEntityID] AS [BusinessEntityID], 
+    [ProductVendor].[AverageLeadTime] AS [AverageLeadTime], 
+    [ProductVendor].[StandardPrice] AS [StandardPrice], 
+    [ProductVendor].[LastReceiptCost] AS [LastReceiptCost], 
+    [ProductVendor].[LastReceiptDate] AS [LastReceiptDate], 
+    [ProductVendor].[MinOrderQty] AS [MinOrderQty], 
+    [ProductVendor].[MaxOrderQty] AS [MaxOrderQty], 
+    [ProductVendor].[OnOrderQty] AS [OnOrderQty], 
+    [ProductVendor].[UnitMeasureCode] AS [UnitMeasureCode], 
+    [ProductVendor].[ModifiedDate] AS [ModifiedDate]
+    FROM [Purchasing].[ProductVendor] AS [ProductVendor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PurchaseOrderDetail" EntityType="Self.PurchaseOrderDetail" store:Type="Tables" store:Schema="Purchasing">
+            <DefiningQuery>SELECT 
+    [PurchaseOrderDetail].[PurchaseOrderID] AS [PurchaseOrderID], 
+    [PurchaseOrderDetail].[PurchaseOrderDetailID] AS [PurchaseOrderDetailID], 
+    [PurchaseOrderDetail].[DueDate] AS [DueDate], 
+    [PurchaseOrderDetail].[OrderQty] AS [OrderQty], 
+    [PurchaseOrderDetail].[ProductID] AS [ProductID], 
+    [PurchaseOrderDetail].[UnitPrice] AS [UnitPrice], 
+    [PurchaseOrderDetail].[LineTotal] AS [LineTotal], 
+    [PurchaseOrderDetail].[ReceivedQty] AS [ReceivedQty], 
+    [PurchaseOrderDetail].[RejectedQty] AS [RejectedQty], 
+    [PurchaseOrderDetail].[StockedQty] AS [StockedQty], 
+    [PurchaseOrderDetail].[ModifiedDate] AS [ModifiedDate]
+    FROM [Purchasing].[PurchaseOrderDetail] AS [PurchaseOrderDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PurchaseOrderHeader" EntityType="Self.PurchaseOrderHeader" store:Type="Tables" store:Schema="Purchasing">
+            <DefiningQuery>SELECT 
+    [PurchaseOrderHeader].[PurchaseOrderID] AS [PurchaseOrderID], 
+    [PurchaseOrderHeader].[RevisionNumber] AS [RevisionNumber], 
+    [PurchaseOrderHeader].[Status] AS [Status], 
+    [PurchaseOrderHeader].[EmployeeID] AS [EmployeeID], 
+    [PurchaseOrderHeader].[VendorID] AS [VendorID], 
+    [PurchaseOrderHeader].[ShipMethodID] AS [ShipMethodID], 
+    [PurchaseOrderHeader].[OrderDate] AS [OrderDate], 
+    [PurchaseOrderHeader].[ShipDate] AS [ShipDate], 
+    [PurchaseOrderHeader].[SubTotal] AS [SubTotal], 
+    [PurchaseOrderHeader].[TaxAmt] AS [TaxAmt], 
+    [PurchaseOrderHeader].[Freight] AS [Freight], 
+    [PurchaseOrderHeader].[TotalDue] AS [TotalDue], 
+    [PurchaseOrderHeader].[ModifiedDate] AS [ModifiedDate]
+    FROM [Purchasing].[PurchaseOrderHeader] AS [PurchaseOrderHeader]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ShipMethod" EntityType="Self.ShipMethod" store:Type="Tables" store:Schema="Purchasing">
+            <DefiningQuery>SELECT 
+    [ShipMethod].[ShipMethodID] AS [ShipMethodID], 
+    [ShipMethod].[Name] AS [Name], 
+    [ShipMethod].[ShipBase] AS [ShipBase], 
+    [ShipMethod].[ShipRate] AS [ShipRate], 
+    [ShipMethod].[rowguid] AS [rowguid], 
+    [ShipMethod].[ModifiedDate] AS [ModifiedDate]
+    FROM [Purchasing].[ShipMethod] AS [ShipMethod]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" store:Type="Tables" store:Schema="Purchasing">
+            <DefiningQuery>SELECT 
+    [Vendor].[BusinessEntityID] AS [BusinessEntityID], 
+    [Vendor].[AccountNumber] AS [AccountNumber], 
+    [Vendor].[Name] AS [Name], 
+    [Vendor].[CreditRating] AS [CreditRating], 
+    [Vendor].[PreferredVendorStatus] AS [PreferredVendorStatus], 
+    [Vendor].[ActiveFlag] AS [ActiveFlag], 
+    [Vendor].[PurchasingWebServiceURL] AS [PurchasingWebServiceURL], 
+    [Vendor].[ModifiedDate] AS [ModifiedDate]
+    FROM [Purchasing].[Vendor] AS [Vendor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CountryRegionCurrency" EntityType="Self.CountryRegionCurrency" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [CountryRegionCurrency].[CountryRegionCode] AS [CountryRegionCode], 
+    [CountryRegionCurrency].[CurrencyCode] AS [CurrencyCode], 
+    [CountryRegionCurrency].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[CountryRegionCurrency] AS [CountryRegionCurrency]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CreditCard" EntityType="Self.CreditCard" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [CreditCard].[CreditCardID] AS [CreditCardID], 
+    [CreditCard].[CardType] AS [CardType], 
+    [CreditCard].[CardNumber] AS [CardNumber], 
+    [CreditCard].[ExpMonth] AS [ExpMonth], 
+    [CreditCard].[ExpYear] AS [ExpYear], 
+    [CreditCard].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[CreditCard] AS [CreditCard]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Currency" EntityType="Self.Currency" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [Currency].[CurrencyCode] AS [CurrencyCode], 
+    [Currency].[Name] AS [Name], 
+    [Currency].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[Currency] AS [Currency]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CurrencyRate" EntityType="Self.CurrencyRate" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [CurrencyRate].[CurrencyRateID] AS [CurrencyRateID], 
+    [CurrencyRate].[CurrencyRateDate] AS [CurrencyRateDate], 
+    [CurrencyRate].[FromCurrencyCode] AS [FromCurrencyCode], 
+    [CurrencyRate].[ToCurrencyCode] AS [ToCurrencyCode], 
+    [CurrencyRate].[AverageRate] AS [AverageRate], 
+    [CurrencyRate].[EndOfDayRate] AS [EndOfDayRate], 
+    [CurrencyRate].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[CurrencyRate] AS [CurrencyRate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [Customer].[CustomerID] AS [CustomerID], 
+    [Customer].[PersonID] AS [PersonID], 
+    [Customer].[StoreID] AS [StoreID], 
+    [Customer].[TerritoryID] AS [TerritoryID], 
+    [Customer].[AccountNumber] AS [AccountNumber], 
+    [Customer].[rowguid] AS [rowguid], 
+    [Customer].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[Customer] AS [Customer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PersonCreditCard" EntityType="Self.PersonCreditCard" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [PersonCreditCard].[BusinessEntityID] AS [BusinessEntityID], 
+    [PersonCreditCard].[CreditCardID] AS [CreditCardID], 
+    [PersonCreditCard].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[PersonCreditCard] AS [PersonCreditCard]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesOrderDetail" EntityType="Self.SalesOrderDetail" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesOrderDetail].[SalesOrderID] AS [SalesOrderID], 
+    [SalesOrderDetail].[SalesOrderDetailID] AS [SalesOrderDetailID], 
+    [SalesOrderDetail].[CarrierTrackingNumber] AS [CarrierTrackingNumber], 
+    [SalesOrderDetail].[OrderQty] AS [OrderQty], 
+    [SalesOrderDetail].[ProductID] AS [ProductID], 
+    [SalesOrderDetail].[SpecialOfferID] AS [SpecialOfferID], 
+    [SalesOrderDetail].[UnitPrice] AS [UnitPrice], 
+    [SalesOrderDetail].[UnitPriceDiscount] AS [UnitPriceDiscount], 
+    [SalesOrderDetail].[LineTotal] AS [LineTotal], 
+    [SalesOrderDetail].[rowguid] AS [rowguid], 
+    [SalesOrderDetail].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesOrderDetail] AS [SalesOrderDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesOrderHeader" EntityType="Self.SalesOrderHeader" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesOrderHeader].[SalesOrderID] AS [SalesOrderID], 
+    [SalesOrderHeader].[RevisionNumber] AS [RevisionNumber], 
+    [SalesOrderHeader].[OrderDate] AS [OrderDate], 
+    [SalesOrderHeader].[DueDate] AS [DueDate], 
+    [SalesOrderHeader].[ShipDate] AS [ShipDate], 
+    [SalesOrderHeader].[Status] AS [Status], 
+    [SalesOrderHeader].[OnlineOrderFlag] AS [OnlineOrderFlag], 
+    [SalesOrderHeader].[SalesOrderNumber] AS [SalesOrderNumber], 
+    [SalesOrderHeader].[PurchaseOrderNumber] AS [PurchaseOrderNumber], 
+    [SalesOrderHeader].[AccountNumber] AS [AccountNumber], 
+    [SalesOrderHeader].[CustomerID] AS [CustomerID], 
+    [SalesOrderHeader].[SalesPersonID] AS [SalesPersonID], 
+    [SalesOrderHeader].[TerritoryID] AS [TerritoryID], 
+    [SalesOrderHeader].[BillToAddressID] AS [BillToAddressID], 
+    [SalesOrderHeader].[ShipToAddressID] AS [ShipToAddressID], 
+    [SalesOrderHeader].[ShipMethodID] AS [ShipMethodID], 
+    [SalesOrderHeader].[CreditCardID] AS [CreditCardID], 
+    [SalesOrderHeader].[CreditCardApprovalCode] AS [CreditCardApprovalCode], 
+    [SalesOrderHeader].[CurrencyRateID] AS [CurrencyRateID], 
+    [SalesOrderHeader].[SubTotal] AS [SubTotal], 
+    [SalesOrderHeader].[TaxAmt] AS [TaxAmt], 
+    [SalesOrderHeader].[Freight] AS [Freight], 
+    [SalesOrderHeader].[TotalDue] AS [TotalDue], 
+    [SalesOrderHeader].[Comment] AS [Comment], 
+    [SalesOrderHeader].[rowguid] AS [rowguid], 
+    [SalesOrderHeader].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesOrderHeader] AS [SalesOrderHeader]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesOrderHeaderSalesReason" EntityType="Self.SalesOrderHeaderSalesReason" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesOrderHeaderSalesReason].[SalesOrderID] AS [SalesOrderID], 
+    [SalesOrderHeaderSalesReason].[SalesReasonID] AS [SalesReasonID], 
+    [SalesOrderHeaderSalesReason].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesOrderHeaderSalesReason] AS [SalesOrderHeaderSalesReason]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesPerson" EntityType="Self.SalesPerson" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesPerson].[BusinessEntityID] AS [BusinessEntityID], 
+    [SalesPerson].[TerritoryID] AS [TerritoryID], 
+    [SalesPerson].[SalesQuota] AS [SalesQuota], 
+    [SalesPerson].[Bonus] AS [Bonus], 
+    [SalesPerson].[CommissionPct] AS [CommissionPct], 
+    [SalesPerson].[SalesYTD] AS [SalesYTD], 
+    [SalesPerson].[SalesLastYear] AS [SalesLastYear], 
+    [SalesPerson].[rowguid] AS [rowguid], 
+    [SalesPerson].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesPerson] AS [SalesPerson]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesPersonQuotaHistory" EntityType="Self.SalesPersonQuotaHistory" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesPersonQuotaHistory].[BusinessEntityID] AS [BusinessEntityID], 
+    [SalesPersonQuotaHistory].[QuotaDate] AS [QuotaDate], 
+    [SalesPersonQuotaHistory].[SalesQuota] AS [SalesQuota], 
+    [SalesPersonQuotaHistory].[rowguid] AS [rowguid], 
+    [SalesPersonQuotaHistory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesPersonQuotaHistory] AS [SalesPersonQuotaHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesReason" EntityType="Self.SalesReason" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesReason].[SalesReasonID] AS [SalesReasonID], 
+    [SalesReason].[Name] AS [Name], 
+    [SalesReason].[ReasonType] AS [ReasonType], 
+    [SalesReason].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesReason] AS [SalesReason]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesTaxRate" EntityType="Self.SalesTaxRate" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesTaxRate].[SalesTaxRateID] AS [SalesTaxRateID], 
+    [SalesTaxRate].[StateProvinceID] AS [StateProvinceID], 
+    [SalesTaxRate].[TaxType] AS [TaxType], 
+    [SalesTaxRate].[TaxRate] AS [TaxRate], 
+    [SalesTaxRate].[Name] AS [Name], 
+    [SalesTaxRate].[rowguid] AS [rowguid], 
+    [SalesTaxRate].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesTaxRate] AS [SalesTaxRate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesTerritory" EntityType="Self.SalesTerritory" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesTerritory].[TerritoryID] AS [TerritoryID], 
+    [SalesTerritory].[Name] AS [Name], 
+    [SalesTerritory].[CountryRegionCode] AS [CountryRegionCode], 
+    [SalesTerritory].[Group] AS [Group], 
+    [SalesTerritory].[SalesYTD] AS [SalesYTD], 
+    [SalesTerritory].[SalesLastYear] AS [SalesLastYear], 
+    [SalesTerritory].[CostYTD] AS [CostYTD], 
+    [SalesTerritory].[CostLastYear] AS [CostLastYear], 
+    [SalesTerritory].[rowguid] AS [rowguid], 
+    [SalesTerritory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesTerritory] AS [SalesTerritory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesTerritoryHistory" EntityType="Self.SalesTerritoryHistory" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SalesTerritoryHistory].[BusinessEntityID] AS [BusinessEntityID], 
+    [SalesTerritoryHistory].[TerritoryID] AS [TerritoryID], 
+    [SalesTerritoryHistory].[StartDate] AS [StartDate], 
+    [SalesTerritoryHistory].[EndDate] AS [EndDate], 
+    [SalesTerritoryHistory].[rowguid] AS [rowguid], 
+    [SalesTerritoryHistory].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SalesTerritoryHistory] AS [SalesTerritoryHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ShoppingCartItem" EntityType="Self.ShoppingCartItem" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [ShoppingCartItem].[ShoppingCartItemID] AS [ShoppingCartItemID], 
+    [ShoppingCartItem].[ShoppingCartID] AS [ShoppingCartID], 
+    [ShoppingCartItem].[Quantity] AS [Quantity], 
+    [ShoppingCartItem].[ProductID] AS [ProductID], 
+    [ShoppingCartItem].[DateCreated] AS [DateCreated], 
+    [ShoppingCartItem].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[ShoppingCartItem] AS [ShoppingCartItem]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SpecialOffer" EntityType="Self.SpecialOffer" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SpecialOffer].[SpecialOfferID] AS [SpecialOfferID], 
+    [SpecialOffer].[Description] AS [Description], 
+    [SpecialOffer].[DiscountPct] AS [DiscountPct], 
+    [SpecialOffer].[Type] AS [Type], 
+    [SpecialOffer].[Category] AS [Category], 
+    [SpecialOffer].[StartDate] AS [StartDate], 
+    [SpecialOffer].[EndDate] AS [EndDate], 
+    [SpecialOffer].[MinQty] AS [MinQty], 
+    [SpecialOffer].[MaxQty] AS [MaxQty], 
+    [SpecialOffer].[rowguid] AS [rowguid], 
+    [SpecialOffer].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SpecialOffer] AS [SpecialOffer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SpecialOfferProduct" EntityType="Self.SpecialOfferProduct" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [SpecialOfferProduct].[SpecialOfferID] AS [SpecialOfferID], 
+    [SpecialOfferProduct].[ProductID] AS [ProductID], 
+    [SpecialOfferProduct].[rowguid] AS [rowguid], 
+    [SpecialOfferProduct].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[SpecialOfferProduct] AS [SpecialOfferProduct]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Store" EntityType="Self.Store" store:Type="Tables" store:Schema="Sales">
+            <DefiningQuery>SELECT 
+    [Store].[BusinessEntityID] AS [BusinessEntityID], 
+    [Store].[Name] AS [Name], 
+    [Store].[SalesPersonID] AS [SalesPersonID], 
+    [Store].[Demographics] AS [Demographics], 
+    [Store].[rowguid] AS [rowguid], 
+    [Store].[ModifiedDate] AS [ModifiedDate]
+    FROM [Sales].[Store] AS [Store]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -159,14 +1605,6 @@ warning 6013: The table/view 'TheDB.dbo.UserActivity' does not have a primary ke
           <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="AddressType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ProductCategory">
-          <Key>
-            <PropertyRef Name="CategoryID" />
-            <PropertyRef Name="CategoryName" />
-          </Key>
-          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="ProductImage">
           <Key>
             <PropertyRef Name="ImageId" />
@@ -179,25 +1617,892 @@ warning 6013: The table/view 'TheDB.dbo.UserActivity' does not have a primary ke
           <Property Name="ImageType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ImageFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DOB" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityContainer Name="TheDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Addresses" EntityType="Self.Address" />
-          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
           <EntitySet Name="ProductImages" EntityType="Self.ProductImage" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="BillOfMaterials" EntityType="TheDBModel.BillOfMaterial" />
+          <EntitySet Name="Cultures" EntityType="TheDBModel.Culture" />
+          <EntitySet Name="Documents" EntityType="TheDBModel.Document" />
+          <EntitySet Name="Illustrations" EntityType="TheDBModel.Illustration" />
+          <EntitySet Name="Locations" EntityType="TheDBModel.Location" />
+          <EntitySet Name="ProductCostHistories" EntityType="TheDBModel.ProductCostHistory" />
+          <EntitySet Name="ProductDescriptions" EntityType="TheDBModel.ProductDescription" />
+          <EntitySet Name="ProductDocuments" EntityType="TheDBModel.ProductDocument" />
+          <EntitySet Name="ProductInventories" EntityType="TheDBModel.ProductInventory" />
+          <EntitySet Name="ProductListPriceHistories" EntityType="TheDBModel.ProductListPriceHistory" />
+          <EntitySet Name="ProductModels" EntityType="TheDBModel.ProductModel" />
+          <EntitySet Name="ProductModelIllustrations" EntityType="TheDBModel.ProductModelIllustration" />
+          <EntitySet Name="ProductModelProductDescriptionCultures" EntityType="TheDBModel.ProductModelProductDescriptionCulture" />
+          <EntitySet Name="ProductPhotoes" EntityType="TheDBModel.ProductPhoto" />
+          <EntitySet Name="ProductProductPhotoes" EntityType="TheDBModel.ProductProductPhoto" />
+          <EntitySet Name="ProductReviews" EntityType="TheDBModel.ProductReview" />
+          <EntitySet Name="ProductSubcategories" EntityType="TheDBModel.ProductSubcategory" />
+          <EntitySet Name="ScrapReasons" EntityType="TheDBModel.ScrapReason" />
+          <EntitySet Name="TransactionHistories" EntityType="TheDBModel.TransactionHistory" />
+          <EntitySet Name="TransactionHistoryArchives" EntityType="TheDBModel.TransactionHistoryArchive" />
+          <EntitySet Name="UnitMeasures" EntityType="TheDBModel.UnitMeasure" />
+          <EntitySet Name="WorkOrders" EntityType="TheDBModel.WorkOrder" />
+          <EntitySet Name="WorkOrderRoutings" EntityType="TheDBModel.WorkOrderRouting" />
+          <EntitySet Name="ProductVendors" EntityType="TheDBModel.ProductVendor" />
+          <EntitySet Name="PurchaseOrderDetails" EntityType="TheDBModel.PurchaseOrderDetail" />
+          <EntitySet Name="PurchaseOrderHeaders" EntityType="TheDBModel.PurchaseOrderHeader" />
+          <EntitySet Name="ShipMethods" EntityType="TheDBModel.ShipMethod" />
+          <EntitySet Name="Vendors" EntityType="TheDBModel.Vendor" />
+          <EntitySet Name="CountryRegionCurrencies" EntityType="TheDBModel.CountryRegionCurrency" />
+          <EntitySet Name="CreditCards" EntityType="TheDBModel.CreditCard" />
+          <EntitySet Name="Currencies" EntityType="TheDBModel.Currency" />
+          <EntitySet Name="CurrencyRates" EntityType="TheDBModel.CurrencyRate" />
+          <EntitySet Name="Customers" EntityType="TheDBModel.Customer" />
+          <EntitySet Name="PersonCreditCards" EntityType="TheDBModel.PersonCreditCard" />
+          <EntitySet Name="SalesOrderDetails" EntityType="TheDBModel.SalesOrderDetail" />
+          <EntitySet Name="SalesOrderHeaders" EntityType="TheDBModel.SalesOrderHeader" />
+          <EntitySet Name="SalesOrderHeaderSalesReasons" EntityType="TheDBModel.SalesOrderHeaderSalesReason" />
+          <EntitySet Name="SalesPersons" EntityType="TheDBModel.SalesPerson" />
+          <EntitySet Name="SalesPersonQuotaHistories" EntityType="TheDBModel.SalesPersonQuotaHistory" />
+          <EntitySet Name="SalesReasons" EntityType="TheDBModel.SalesReason" />
+          <EntitySet Name="SalesTaxRates" EntityType="TheDBModel.SalesTaxRate" />
+          <EntitySet Name="SalesTerritories" EntityType="TheDBModel.SalesTerritory" />
+          <EntitySet Name="SalesTerritoryHistories" EntityType="TheDBModel.SalesTerritoryHistory" />
+          <EntitySet Name="ShoppingCartItems" EntityType="TheDBModel.ShoppingCartItem" />
+          <EntitySet Name="SpecialOffers" EntityType="TheDBModel.SpecialOffer" />
+          <EntitySet Name="SpecialOfferProducts" EntityType="TheDBModel.SpecialOfferProduct" />
+          <EntitySet Name="Stores" EntityType="TheDBModel.Store" />
+          <EntitySet Name="AllProducts" EntityType="TheDBModel.AllProduct" />
         </EntityContainer>
+        <EntityType Name="BillOfMaterial">
+          <Key>
+            <PropertyRef Name="BillOfMaterialsID" />
+            <PropertyRef Name="ComponentID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="UnitMeasureCode" />
+            <PropertyRef Name="BOMLevel" />
+            <PropertyRef Name="PerAssemblyQty" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BillOfMaterialsID" Type="Int32" Nullable="false" />
+          <Property Name="ProductAssemblyID" Type="Int32" />
+          <Property Name="ComponentID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="UnitMeasureCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="BOMLevel" Type="Int16" Nullable="false" />
+          <Property Name="PerAssemblyQty" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Culture">
+          <Key>
+            <PropertyRef Name="CultureID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CultureID" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Owner" />
+            <PropertyRef Name="FolderFlag" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="FileExtension" />
+            <PropertyRef Name="Revision" />
+            <PropertyRef Name="ChangeNumber" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="DocumentLevel" Type="Int16" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Owner" Type="Int32" Nullable="false" />
+          <Property Name="FolderFlag" Type="Boolean" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="FileExtension" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Revision" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="ChangeNumber" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="DocumentSummary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Document1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Illustration">
+          <Key>
+            <PropertyRef Name="IllustrationID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="IllustrationID" Type="Int32" Nullable="false" />
+          <Property Name="Diagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CostRate" />
+            <PropertyRef Name="Availability" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="LocationID" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CostRate" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Availability" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductCostHistory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="StandardCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="StandardCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductDescription">
+          <Key>
+            <PropertyRef Name="ProductDescriptionID" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductDescriptionID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductDocument">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductInventory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="Shelf" />
+            <PropertyRef Name="Bin" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int16" Nullable="false" />
+          <Property Name="Shelf" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Bin" Type="Byte" Nullable="false" />
+          <Property Name="Quantity" Type="Int16" Nullable="false" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductListPriceHistory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="ListPrice" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="ListPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductModel">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductModelID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CatalogDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Instructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductModelIllustration">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="IllustrationID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductModelID" Type="Int32" Nullable="false" />
+          <Property Name="IllustrationID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductModelProductDescriptionCulture">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="ProductDescriptionID" />
+            <PropertyRef Name="CultureID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductModelID" Type="Int32" Nullable="false" />
+          <Property Name="ProductDescriptionID" Type="Int32" Nullable="false" />
+          <Property Name="CultureID" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductPhotoID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductPhotoID" Type="Int32" Nullable="false" />
+          <Property Name="ThumbNailPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ThumbnailPhotoFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LargePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LargePhotoFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ProductPhotoID" />
+            <PropertyRef Name="Primary" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductPhotoID" Type="Int32" Nullable="false" />
+          <Property Name="Primary" Type="Boolean" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductReview">
+          <Key>
+            <PropertyRef Name="ProductReviewID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ReviewerName" />
+            <PropertyRef Name="ReviewDate" />
+            <PropertyRef Name="EmailAddress" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductReviewID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ReviewerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReviewDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="3850" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductSubcategory">
+          <Key>
+            <PropertyRef Name="ProductSubcategoryID" />
+            <PropertyRef Name="ProductCategoryID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductSubcategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ScrapReason">
+          <Key>
+            <PropertyRef Name="ScrapReasonID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ScrapReasonID" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TransactionHistory">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ReferenceOrderID" />
+            <PropertyRef Name="ReferenceOrderLineID" />
+            <PropertyRef Name="TransactionDate" />
+            <PropertyRef Name="TransactionType" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ActualCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceOrderID" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceOrderLineID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="ActualCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TransactionHistoryArchive">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ReferenceOrderID" />
+            <PropertyRef Name="ReferenceOrderLineID" />
+            <PropertyRef Name="TransactionDate" />
+            <PropertyRef Name="TransactionType" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ActualCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceOrderID" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceOrderLineID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="ActualCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UnitMeasure">
+          <Key>
+            <PropertyRef Name="UnitMeasureCode" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="UnitMeasureCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="WorkOrderID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="OrderQty" />
+            <PropertyRef Name="StockedQty" />
+            <PropertyRef Name="ScrappedQty" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="DueDate" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="WorkOrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="OrderQty" Type="Int32" Nullable="false" />
+          <Property Name="StockedQty" Type="Int32" Nullable="false" />
+          <Property Name="ScrappedQty" Type="Int16" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ScrapReasonID" Type="Int16" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="WorkOrderRouting">
+          <Key>
+            <PropertyRef Name="WorkOrderID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="OperationSequence" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="ScheduledStartDate" />
+            <PropertyRef Name="ScheduledEndDate" />
+            <PropertyRef Name="PlannedCost" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="WorkOrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="OperationSequence" Type="Int16" Nullable="false" />
+          <Property Name="LocationID" Type="Int16" Nullable="false" />
+          <Property Name="ScheduledStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ScheduledEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ActualStartDate" Type="DateTime" Precision="3" />
+          <Property Name="ActualEndDate" Type="DateTime" Precision="3" />
+          <Property Name="ActualResourceHrs" Type="Decimal" Precision="9" Scale="4" />
+          <Property Name="PlannedCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ActualCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductVendor">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="AverageLeadTime" />
+            <PropertyRef Name="StandardPrice" />
+            <PropertyRef Name="MinOrderQty" />
+            <PropertyRef Name="MaxOrderQty" />
+            <PropertyRef Name="UnitMeasureCode" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
+          <Property Name="AverageLeadTime" Type="Int32" Nullable="false" />
+          <Property Name="StandardPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LastReceiptCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LastReceiptDate" Type="DateTime" Precision="3" />
+          <Property Name="MinOrderQty" Type="Int32" Nullable="false" />
+          <Property Name="MaxOrderQty" Type="Int32" Nullable="false" />
+          <Property Name="OnOrderQty" Type="Int32" />
+          <Property Name="UnitMeasureCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderDetail">
+          <Key>
+            <PropertyRef Name="PurchaseOrderID" />
+            <PropertyRef Name="PurchaseOrderDetailID" />
+            <PropertyRef Name="DueDate" />
+            <PropertyRef Name="OrderQty" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="LineTotal" />
+            <PropertyRef Name="ReceivedQty" />
+            <PropertyRef Name="RejectedQty" />
+            <PropertyRef Name="StockedQty" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="PurchaseOrderID" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseOrderDetailID" Type="Int32" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderQty" Type="Int16" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LineTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ReceivedQty" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="RejectedQty" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="StockedQty" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderHeader">
+          <Key>
+            <PropertyRef Name="PurchaseOrderID" />
+            <PropertyRef Name="RevisionNumber" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="ShipMethodID" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="SubTotal" />
+            <PropertyRef Name="TaxAmt" />
+            <PropertyRef Name="Freight" />
+            <PropertyRef Name="TotalDue" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="PurchaseOrderID" Type="Int32" Nullable="false" />
+          <Property Name="RevisionNumber" Type="Byte" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="ShipMethodID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ShipDate" Type="DateTime" Precision="3" />
+          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TaxAmt" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Freight" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TotalDue" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ShipMethod">
+          <Key>
+            <PropertyRef Name="ShipMethodID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ShipBase" />
+            <PropertyRef Name="ShipRate" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ShipMethodID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShipBase" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ShipRate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CreditRating" />
+            <PropertyRef Name="PreferredVendorStatus" />
+            <PropertyRef Name="ActiveFlag" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreditRating" Type="Byte" Nullable="false" />
+          <Property Name="PreferredVendorStatus" Type="Boolean" Nullable="false" />
+          <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+          <Property Name="PurchasingWebServiceURL" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CountryRegionCurrency">
+          <Key>
+            <PropertyRef Name="CountryRegionCode" />
+            <PropertyRef Name="CurrencyCode" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CountryRegionCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="CreditCardID" />
+            <PropertyRef Name="CardType" />
+            <PropertyRef Name="CardNumber" />
+            <PropertyRef Name="ExpMonth" />
+            <PropertyRef Name="ExpYear" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CreditCardID" Type="Int32" Nullable="false" />
+          <Property Name="CardType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ExpMonth" Type="Byte" Nullable="false" />
+          <Property Name="ExpYear" Type="Int16" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyCode" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CurrencyCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CurrencyRate">
+          <Key>
+            <PropertyRef Name="CurrencyRateID" />
+            <PropertyRef Name="CurrencyRateDate" />
+            <PropertyRef Name="FromCurrencyCode" />
+            <PropertyRef Name="ToCurrencyCode" />
+            <PropertyRef Name="AverageRate" />
+            <PropertyRef Name="EndOfDayRate" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CurrencyRateID" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyRateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FromCurrencyCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="ToCurrencyCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="AverageRate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="EndOfDayRate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" />
+          <Property Name="StoreID" Type="Int32" />
+          <Property Name="TerritoryID" Type="Int32" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PersonCreditCard">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="CreditCardID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
+          <Property Name="CreditCardID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesOrderDetail">
+          <Key>
+            <PropertyRef Name="SalesOrderID" />
+            <PropertyRef Name="SalesOrderDetailID" />
+            <PropertyRef Name="OrderQty" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="SpecialOfferID" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="UnitPriceDiscount" />
+            <PropertyRef Name="LineTotal" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesOrderID" Type="Int32" Nullable="false" />
+          <Property Name="SalesOrderDetailID" Type="Int32" Nullable="false" />
+          <Property Name="CarrierTrackingNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="OrderQty" Type="Int16" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="SpecialOfferID" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="UnitPriceDiscount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LineTotal" Type="Decimal" Nullable="false" Precision="38" Scale="6" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesOrderHeader">
+          <Key>
+            <PropertyRef Name="SalesOrderID" />
+            <PropertyRef Name="RevisionNumber" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="DueDate" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="OnlineOrderFlag" />
+            <PropertyRef Name="SalesOrderNumber" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="BillToAddressID" />
+            <PropertyRef Name="ShipToAddressID" />
+            <PropertyRef Name="ShipMethodID" />
+            <PropertyRef Name="SubTotal" />
+            <PropertyRef Name="TaxAmt" />
+            <PropertyRef Name="Freight" />
+            <PropertyRef Name="TotalDue" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesOrderID" Type="Int32" Nullable="false" />
+          <Property Name="RevisionNumber" Type="Byte" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ShipDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="OnlineOrderFlag" Type="Boolean" Nullable="false" />
+          <Property Name="SalesOrderNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseOrderNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="SalesPersonID" Type="Int32" />
+          <Property Name="TerritoryID" Type="Int32" />
+          <Property Name="BillToAddressID" Type="Int32" Nullable="false" />
+          <Property Name="ShipToAddressID" Type="Int32" Nullable="false" />
+          <Property Name="ShipMethodID" Type="Int32" Nullable="false" />
+          <Property Name="CreditCardID" Type="Int32" />
+          <Property Name="CreditCardApprovalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyRateID" Type="Int32" />
+          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TaxAmt" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Freight" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TotalDue" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Comment" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesOrderHeaderSalesReason">
+          <Key>
+            <PropertyRef Name="SalesOrderID" />
+            <PropertyRef Name="SalesReasonID" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesOrderID" Type="Int32" Nullable="false" />
+          <Property Name="SalesReasonID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesPerson">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="Bonus" />
+            <PropertyRef Name="CommissionPct" />
+            <PropertyRef Name="SalesYTD" />
+            <PropertyRef Name="SalesLastYear" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
+          <Property Name="TerritoryID" Type="Int32" />
+          <Property Name="SalesQuota" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Bonus" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CommissionPct" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="SalesYTD" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SalesLastYear" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesPersonQuotaHistory">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="QuotaDate" />
+            <PropertyRef Name="SalesQuota" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
+          <Property Name="QuotaDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SalesQuota" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesReason">
+          <Key>
+            <PropertyRef Name="SalesReasonID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ReasonType" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesReasonID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesTaxRate">
+          <Key>
+            <PropertyRef Name="SalesTaxRateID" />
+            <PropertyRef Name="StateProvinceID" />
+            <PropertyRef Name="TaxType" />
+            <PropertyRef Name="TaxRate" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SalesTaxRateID" Type="Int32" Nullable="false" />
+          <Property Name="StateProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="TaxType" Type="Byte" Nullable="false" />
+          <Property Name="TaxRate" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesTerritory">
+          <Key>
+            <PropertyRef Name="TerritoryID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="CountryRegionCode" />
+            <PropertyRef Name="Group" />
+            <PropertyRef Name="SalesYTD" />
+            <PropertyRef Name="SalesLastYear" />
+            <PropertyRef Name="CostYTD" />
+            <PropertyRef Name="CostLastYear" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="TerritoryID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryRegionCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Group" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesYTD" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SalesLastYear" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CostYTD" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CostLastYear" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalesTerritoryHistory">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="TerritoryID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
+          <Property Name="TerritoryID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ShoppingCartItem">
+          <Key>
+            <PropertyRef Name="ShoppingCartItemID" />
+            <PropertyRef Name="ShoppingCartID" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ShoppingCartItemID" Type="Int32" Nullable="false" />
+          <Property Name="ShoppingCartID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SpecialOffer">
+          <Key>
+            <PropertyRef Name="SpecialOfferID" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="DiscountPct" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="EndDate" />
+            <PropertyRef Name="MinQty" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SpecialOfferID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountPct" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MinQty" Type="Int32" Nullable="false" />
+          <Property Name="MaxQty" Type="Int32" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SpecialOfferProduct">
+          <Key>
+            <PropertyRef Name="SpecialOfferID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="SpecialOfferID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesPersonID" Type="Int32" />
+          <Property Name="Demographics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="AllProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="ProductNumber" />
+            <PropertyRef Name="MakeFlag" />
+            <PropertyRef Name="FinishedGoodsFlag" />
+            <PropertyRef Name="SafetyStockLevel" />
+            <PropertyRef Name="ReorderPoint" />
+            <PropertyRef Name="StandardCost" />
+            <PropertyRef Name="ListPrice" />
+            <PropertyRef Name="DaysToManufacture" />
+            <PropertyRef Name="SellStartDate" />
+            <PropertyRef Name="rowguid" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="MakeFlag" Type="Boolean" Nullable="false" />
+          <Property Name="FinishedGoodsFlag" Type="Boolean" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SafetyStockLevel" Type="Int16" Nullable="false" />
+          <Property Name="ReorderPoint" Type="Int16" Nullable="false" />
+          <Property Name="StandardCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ListPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Size" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SizeUnitMeasureCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="WeightUnitMeasureCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Weight" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="DaysToManufacture" Type="Int32" Nullable="false" />
+          <Property Name="ProductLine" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="Class" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="Style" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="ProductSubcategoryID" Type="Int32" />
+          <Property Name="ProductModelID" Type="Int32" />
+          <Property Name="SellStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SellEndDate" Type="DateTime" Precision="3" />
+          <Property Name="DiscontinuedDate" Type="DateTime" Precision="3" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -236,14 +2541,6 @@ warning 6013: The table/view 'TheDB.dbo.UserActivity' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductCategories">
-            <EntityTypeMapping TypeName="TheDBModel.ProductCategory">
-              <MappingFragment StoreEntitySet="ProductCategory">
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductImages">
             <EntityTypeMapping TypeName="TheDBModel.ProductImage">
               <MappingFragment StoreEntitySet="ProductImage">
@@ -257,16 +2554,640 @@ warning 6013: The table/view 'TheDB.dbo.UserActivity' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="TheDBModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <EntitySetMapping Name="BillOfMaterials">
+            <EntityTypeMapping TypeName="TheDBModel.BillOfMaterial">
+              <MappingFragment StoreEntitySet="BillOfMaterials">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="PerAssemblyQty" ColumnName="PerAssemblyQty" />
+                <ScalarProperty Name="BOMLevel" ColumnName="BOMLevel" />
+                <ScalarProperty Name="UnitMeasureCode" ColumnName="UnitMeasureCode" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
+                <ScalarProperty Name="ProductAssemblyID" ColumnName="ProductAssemblyID" />
+                <ScalarProperty Name="BillOfMaterialsID" ColumnName="BillOfMaterialsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cultures">
+            <EntityTypeMapping TypeName="TheDBModel.Culture">
+              <MappingFragment StoreEntitySet="Culture">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CultureID" ColumnName="CultureID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="TheDBModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Document1" ColumnName="Document" />
+                <ScalarProperty Name="DocumentSummary" ColumnName="DocumentSummary" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ChangeNumber" ColumnName="ChangeNumber" />
+                <ScalarProperty Name="Revision" ColumnName="Revision" />
+                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FolderFlag" ColumnName="FolderFlag" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DocumentLevel" ColumnName="DocumentLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Illustrations">
+            <EntityTypeMapping TypeName="TheDBModel.Illustration">
+              <MappingFragment StoreEntitySet="Illustration">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Diagram" ColumnName="Diagram" />
+                <ScalarProperty Name="IllustrationID" ColumnName="IllustrationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="TheDBModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="CostRate" ColumnName="CostRate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCostHistories">
+            <EntityTypeMapping TypeName="TheDBModel.ProductCostHistory">
+              <MappingFragment StoreEntitySet="ProductCostHistory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="StandardCost" ColumnName="StandardCost" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDescriptions">
+            <EntityTypeMapping TypeName="TheDBModel.ProductDescription">
+              <MappingFragment StoreEntitySet="ProductDescription">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductDescriptionID" ColumnName="ProductDescriptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDocuments">
+            <EntityTypeMapping TypeName="TheDBModel.ProductDocument">
+              <MappingFragment StoreEntitySet="ProductDocument">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductInventories">
+            <EntityTypeMapping TypeName="TheDBModel.ProductInventory">
+              <MappingFragment StoreEntitySet="ProductInventory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Bin" ColumnName="Bin" />
+                <ScalarProperty Name="Shelf" ColumnName="Shelf" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductListPriceHistories">
+            <EntityTypeMapping TypeName="TheDBModel.ProductListPriceHistory">
+              <MappingFragment StoreEntitySet="ProductListPriceHistory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductModels">
+            <EntityTypeMapping TypeName="TheDBModel.ProductModel">
+              <MappingFragment StoreEntitySet="ProductModel">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="CatalogDescription" ColumnName="CatalogDescription" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductModelID" ColumnName="ProductModelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductModelIllustrations">
+            <EntityTypeMapping TypeName="TheDBModel.ProductModelIllustration">
+              <MappingFragment StoreEntitySet="ProductModelIllustration">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IllustrationID" ColumnName="IllustrationID" />
+                <ScalarProperty Name="ProductModelID" ColumnName="ProductModelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductModelProductDescriptionCultures">
+            <EntityTypeMapping TypeName="TheDBModel.ProductModelProductDescriptionCulture">
+              <MappingFragment StoreEntitySet="ProductModelProductDescriptionCulture">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CultureID" ColumnName="CultureID" />
+                <ScalarProperty Name="ProductDescriptionID" ColumnName="ProductDescriptionID" />
+                <ScalarProperty Name="ProductModelID" ColumnName="ProductModelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPhotoes">
+            <EntityTypeMapping TypeName="TheDBModel.ProductPhoto">
+              <MappingFragment StoreEntitySet="ProductPhoto">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="LargePhotoFileName" ColumnName="LargePhotoFileName" />
+                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
+                <ScalarProperty Name="ThumbnailPhotoFileName" ColumnName="ThumbnailPhotoFileName" />
+                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
+                <ScalarProperty Name="ProductPhotoID" ColumnName="ProductPhotoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductProductPhotoes">
+            <EntityTypeMapping TypeName="TheDBModel.ProductProductPhoto">
+              <MappingFragment StoreEntitySet="ProductProductPhoto">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Primary" ColumnName="Primary" />
+                <ScalarProperty Name="ProductPhotoID" ColumnName="ProductPhotoID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductReviews">
+            <EntityTypeMapping TypeName="TheDBModel.ProductReview">
+              <MappingFragment StoreEntitySet="ProductReview">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ReviewDate" ColumnName="ReviewDate" />
+                <ScalarProperty Name="ReviewerName" ColumnName="ReviewerName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductReviewID" ColumnName="ProductReviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSubcategories">
+            <EntityTypeMapping TypeName="TheDBModel.ProductSubcategory">
+              <MappingFragment StoreEntitySet="ProductSubcategory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="ProductSubcategoryID" ColumnName="ProductSubcategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScrapReasons">
+            <EntityTypeMapping TypeName="TheDBModel.ScrapReason">
+              <MappingFragment StoreEntitySet="ScrapReason">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ScrapReasonID" ColumnName="ScrapReasonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionHistories">
+            <EntityTypeMapping TypeName="TheDBModel.TransactionHistory">
+              <MappingFragment StoreEntitySet="TransactionHistory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ActualCost" ColumnName="ActualCost" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="ReferenceOrderLineID" ColumnName="ReferenceOrderLineID" />
+                <ScalarProperty Name="ReferenceOrderID" ColumnName="ReferenceOrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionHistoryArchives">
+            <EntityTypeMapping TypeName="TheDBModel.TransactionHistoryArchive">
+              <MappingFragment StoreEntitySet="TransactionHistoryArchive">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ActualCost" ColumnName="ActualCost" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="ReferenceOrderLineID" ColumnName="ReferenceOrderLineID" />
+                <ScalarProperty Name="ReferenceOrderID" ColumnName="ReferenceOrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitMeasures">
+            <EntityTypeMapping TypeName="TheDBModel.UnitMeasure">
+              <MappingFragment StoreEntitySet="UnitMeasure">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UnitMeasureCode" ColumnName="UnitMeasureCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrders">
+            <EntityTypeMapping TypeName="TheDBModel.WorkOrder">
+              <MappingFragment StoreEntitySet="WorkOrder">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ScrapReasonID" ColumnName="ScrapReasonID" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ScrappedQty" ColumnName="ScrappedQty" />
+                <ScalarProperty Name="StockedQty" ColumnName="StockedQty" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="WorkOrderID" ColumnName="WorkOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrderRoutings">
+            <EntityTypeMapping TypeName="TheDBModel.WorkOrderRouting">
+              <MappingFragment StoreEntitySet="WorkOrderRouting">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ActualCost" ColumnName="ActualCost" />
+                <ScalarProperty Name="PlannedCost" ColumnName="PlannedCost" />
+                <ScalarProperty Name="ActualResourceHrs" ColumnName="ActualResourceHrs" />
+                <ScalarProperty Name="ActualEndDate" ColumnName="ActualEndDate" />
+                <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+                <ScalarProperty Name="ScheduledEndDate" ColumnName="ScheduledEndDate" />
+                <ScalarProperty Name="ScheduledStartDate" ColumnName="ScheduledStartDate" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="OperationSequence" ColumnName="OperationSequence" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="WorkOrderID" ColumnName="WorkOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductVendors">
+            <EntityTypeMapping TypeName="TheDBModel.ProductVendor">
+              <MappingFragment StoreEntitySet="ProductVendor">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="UnitMeasureCode" ColumnName="UnitMeasureCode" />
+                <ScalarProperty Name="OnOrderQty" ColumnName="OnOrderQty" />
+                <ScalarProperty Name="MaxOrderQty" ColumnName="MaxOrderQty" />
+                <ScalarProperty Name="MinOrderQty" ColumnName="MinOrderQty" />
+                <ScalarProperty Name="LastReceiptDate" ColumnName="LastReceiptDate" />
+                <ScalarProperty Name="LastReceiptCost" ColumnName="LastReceiptCost" />
+                <ScalarProperty Name="StandardPrice" ColumnName="StandardPrice" />
+                <ScalarProperty Name="AverageLeadTime" ColumnName="AverageLeadTime" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrderDetails">
+            <EntityTypeMapping TypeName="TheDBModel.PurchaseOrderDetail">
+              <MappingFragment StoreEntitySet="PurchaseOrderDetail">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="StockedQty" ColumnName="StockedQty" />
+                <ScalarProperty Name="RejectedQty" ColumnName="RejectedQty" />
+                <ScalarProperty Name="ReceivedQty" ColumnName="ReceivedQty" />
+                <ScalarProperty Name="LineTotal" ColumnName="LineTotal" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="PurchaseOrderDetailID" ColumnName="PurchaseOrderDetailID" />
+                <ScalarProperty Name="PurchaseOrderID" ColumnName="PurchaseOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrderHeaders">
+            <EntityTypeMapping TypeName="TheDBModel.PurchaseOrderHeader">
+              <MappingFragment StoreEntitySet="PurchaseOrderHeader">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="TotalDue" ColumnName="TotalDue" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="TaxAmt" ColumnName="TaxAmt" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="ShipDate" ColumnName="ShipDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ShipMethodID" ColumnName="ShipMethodID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+                <ScalarProperty Name="PurchaseOrderID" ColumnName="PurchaseOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShipMethods">
+            <EntityTypeMapping TypeName="TheDBModel.ShipMethod">
+              <MappingFragment StoreEntitySet="ShipMethod">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="ShipRate" ColumnName="ShipRate" />
+                <ScalarProperty Name="ShipBase" ColumnName="ShipBase" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShipMethodID" ColumnName="ShipMethodID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="TheDBModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="PurchasingWebServiceURL" ColumnName="PurchasingWebServiceURL" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="PreferredVendorStatus" ColumnName="PreferredVendorStatus" />
+                <ScalarProperty Name="CreditRating" ColumnName="CreditRating" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryRegionCurrencies">
+            <EntityTypeMapping TypeName="TheDBModel.CountryRegionCurrency">
+              <MappingFragment StoreEntitySet="CountryRegionCurrency">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="CountryRegionCode" ColumnName="CountryRegionCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="TheDBModel.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCard">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ExpYear" ColumnName="ExpYear" />
+                <ScalarProperty Name="ExpMonth" ColumnName="ExpMonth" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CreditCardID" ColumnName="CreditCardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="TheDBModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyRates">
+            <EntityTypeMapping TypeName="TheDBModel.CurrencyRate">
+              <MappingFragment StoreEntitySet="CurrencyRate">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="EndOfDayRate" ColumnName="EndOfDayRate" />
+                <ScalarProperty Name="AverageRate" ColumnName="AverageRate" />
+                <ScalarProperty Name="ToCurrencyCode" ColumnName="ToCurrencyCode" />
+                <ScalarProperty Name="FromCurrencyCode" ColumnName="FromCurrencyCode" />
+                <ScalarProperty Name="CurrencyRateDate" ColumnName="CurrencyRateDate" />
+                <ScalarProperty Name="CurrencyRateID" ColumnName="CurrencyRateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TheDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonCreditCards">
+            <EntityTypeMapping TypeName="TheDBModel.PersonCreditCard">
+              <MappingFragment StoreEntitySet="PersonCreditCard">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreditCardID" ColumnName="CreditCardID" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesOrderDetails">
+            <EntityTypeMapping TypeName="TheDBModel.SalesOrderDetail">
+              <MappingFragment StoreEntitySet="SalesOrderDetail">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="LineTotal" ColumnName="LineTotal" />
+                <ScalarProperty Name="UnitPriceDiscount" ColumnName="UnitPriceDiscount" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SpecialOfferID" ColumnName="SpecialOfferID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="CarrierTrackingNumber" ColumnName="CarrierTrackingNumber" />
+                <ScalarProperty Name="SalesOrderDetailID" ColumnName="SalesOrderDetailID" />
+                <ScalarProperty Name="SalesOrderID" ColumnName="SalesOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesOrderHeaders">
+            <EntityTypeMapping TypeName="TheDBModel.SalesOrderHeader">
+              <MappingFragment StoreEntitySet="SalesOrderHeader">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="TotalDue" ColumnName="TotalDue" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="TaxAmt" ColumnName="TaxAmt" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="CurrencyRateID" ColumnName="CurrencyRateID" />
+                <ScalarProperty Name="CreditCardApprovalCode" ColumnName="CreditCardApprovalCode" />
+                <ScalarProperty Name="CreditCardID" ColumnName="CreditCardID" />
+                <ScalarProperty Name="ShipMethodID" ColumnName="ShipMethodID" />
+                <ScalarProperty Name="ShipToAddressID" ColumnName="ShipToAddressID" />
+                <ScalarProperty Name="BillToAddressID" ColumnName="BillToAddressID" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="SalesPersonID" ColumnName="SalesPersonID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="PurchaseOrderNumber" ColumnName="PurchaseOrderNumber" />
+                <ScalarProperty Name="SalesOrderNumber" ColumnName="SalesOrderNumber" />
+                <ScalarProperty Name="OnlineOrderFlag" ColumnName="OnlineOrderFlag" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ShipDate" ColumnName="ShipDate" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+                <ScalarProperty Name="SalesOrderID" ColumnName="SalesOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesOrderHeaderSalesReasons">
+            <EntityTypeMapping TypeName="TheDBModel.SalesOrderHeaderSalesReason">
+              <MappingFragment StoreEntitySet="SalesOrderHeaderSalesReason">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="SalesReasonID" ColumnName="SalesReasonID" />
+                <ScalarProperty Name="SalesOrderID" ColumnName="SalesOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesPersons">
+            <EntityTypeMapping TypeName="TheDBModel.SalesPerson">
+              <MappingFragment StoreEntitySet="SalesPerson">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="SalesLastYear" ColumnName="SalesLastYear" />
+                <ScalarProperty Name="SalesYTD" ColumnName="SalesYTD" />
+                <ScalarProperty Name="CommissionPct" ColumnName="CommissionPct" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="SalesQuota" ColumnName="SalesQuota" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesPersonQuotaHistories">
+            <EntityTypeMapping TypeName="TheDBModel.SalesPersonQuotaHistory">
+              <MappingFragment StoreEntitySet="SalesPersonQuotaHistory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="SalesQuota" ColumnName="SalesQuota" />
+                <ScalarProperty Name="QuotaDate" ColumnName="QuotaDate" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesReasons">
+            <EntityTypeMapping TypeName="TheDBModel.SalesReason">
+              <MappingFragment StoreEntitySet="SalesReason">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ReasonType" ColumnName="ReasonType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SalesReasonID" ColumnName="SalesReasonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesTaxRates">
+            <EntityTypeMapping TypeName="TheDBModel.SalesTaxRate">
+              <MappingFragment StoreEntitySet="SalesTaxRate">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TaxRate" ColumnName="TaxRate" />
+                <ScalarProperty Name="TaxType" ColumnName="TaxType" />
+                <ScalarProperty Name="StateProvinceID" ColumnName="StateProvinceID" />
+                <ScalarProperty Name="SalesTaxRateID" ColumnName="SalesTaxRateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesTerritories">
+            <EntityTypeMapping TypeName="TheDBModel.SalesTerritory">
+              <MappingFragment StoreEntitySet="SalesTerritory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="CostLastYear" ColumnName="CostLastYear" />
+                <ScalarProperty Name="CostYTD" ColumnName="CostYTD" />
+                <ScalarProperty Name="SalesLastYear" ColumnName="SalesLastYear" />
+                <ScalarProperty Name="SalesYTD" ColumnName="SalesYTD" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="CountryRegionCode" ColumnName="CountryRegionCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesTerritoryHistories">
+            <EntityTypeMapping TypeName="TheDBModel.SalesTerritoryHistory">
+              <MappingFragment StoreEntitySet="SalesTerritoryHistory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingCartItems">
+            <EntityTypeMapping TypeName="TheDBModel.ShoppingCartItem">
+              <MappingFragment StoreEntitySet="ShoppingCartItem">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ShoppingCartID" ColumnName="ShoppingCartID" />
+                <ScalarProperty Name="ShoppingCartItemID" ColumnName="ShoppingCartItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialOffers">
+            <EntityTypeMapping TypeName="TheDBModel.SpecialOffer">
+              <MappingFragment StoreEntitySet="SpecialOffer">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="MaxQty" ColumnName="MaxQty" />
+                <ScalarProperty Name="MinQty" ColumnName="MinQty" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DiscountPct" ColumnName="DiscountPct" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SpecialOfferID" ColumnName="SpecialOfferID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialOfferProducts">
+            <EntityTypeMapping TypeName="TheDBModel.SpecialOfferProduct">
+              <MappingFragment StoreEntitySet="SpecialOfferProduct">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="SpecialOfferID" ColumnName="SpecialOfferID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="TheDBModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Demographics" ColumnName="Demographics" />
+                <ScalarProperty Name="SalesPersonID" ColumnName="SalesPersonID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllProducts">
+            <EntityTypeMapping TypeName="TheDBModel.AllProduct">
+              <MappingFragment StoreEntitySet="AllProduct">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="DiscontinuedDate" ColumnName="DiscontinuedDate" />
+                <ScalarProperty Name="SellEndDate" ColumnName="SellEndDate" />
+                <ScalarProperty Name="SellStartDate" ColumnName="SellStartDate" />
+                <ScalarProperty Name="ProductModelID" ColumnName="ProductModelID" />
+                <ScalarProperty Name="ProductSubcategoryID" ColumnName="ProductSubcategoryID" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="ProductLine" ColumnName="ProductLine" />
+                <ScalarProperty Name="DaysToManufacture" ColumnName="DaysToManufacture" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="WeightUnitMeasureCode" ColumnName="WeightUnitMeasureCode" />
+                <ScalarProperty Name="SizeUnitMeasureCode" ColumnName="SizeUnitMeasureCode" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="StandardCost" ColumnName="StandardCost" />
+                <ScalarProperty Name="ReorderPoint" ColumnName="ReorderPoint" />
+                <ScalarProperty Name="SafetyStockLevel" ColumnName="SafetyStockLevel" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="FinishedGoodsFlag" ColumnName="FinishedGoodsFlag" />
+                <ScalarProperty Name="MakeFlag" ColumnName="MakeFlag" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
