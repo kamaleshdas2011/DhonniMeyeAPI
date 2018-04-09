@@ -417,7 +417,7 @@ namespace DhonniMeyeAPI.Controllers
 
             }
 
-                if (!result.Succeeded)
+            if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
@@ -436,30 +436,33 @@ namespace DhonniMeyeAPI.Controllers
             using (TheDBEntities db = new TheDBEntities())
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
-                
+
                 var userInfo = (from per in db.People
-                               join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
-                               join bentadd in db.BusinessEntityAddresses on bent.BusinessEntityID equals bentadd.BusinessEntityID
-                               join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
-                               join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
-                               join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
-                               join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
-                               select new {
-                                   Email = user.Email,
-                                   Title = per.Title,
-                                   FirstName = per.FirstName,
-                                   LastName = per.LastName,
-                                   MiddleName = per.MiddleName,
-                                   PhoneNumber = phone.PhoneNumber,
-                                   AddressLine1 = addr.AddressLine1,
-                                   AddressLine2 = addr.AddressLine2,
-                                   City = addr.City,
-                                   PostalCode = addr.PostalCode,
-                                   State = state.Name,
-                                   StateCode = state.StateProvinceCode,
-                                   AddressType = addtype.Name,
-                               }).ToList().FirstOrDefault();
-                if (userInfo!=null)
+                                    //join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
+                                join bentadd in db.BusinessEntityAddresses on per.BusinessEntityID equals bentadd.BusinessEntityID
+                                where per.rowguid.ToString() == user.Id
+                                join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
+                                join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
+                                join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
+                                where addtype.Name == "Primary"
+                                join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
+                                select new
+                                {
+                                    Email = user.Email,
+                                    Title = per.Title,
+                                    FirstName = per.FirstName,
+                                    LastName = per.LastName,
+                                    MiddleName = per.MiddleName,
+                                    PhoneNumber = phone.PhoneNumber,
+                                    AddressLine1 = addr.AddressLine1,
+                                    AddressLine2 = addr.AddressLine2,
+                                    City = addr.City,
+                                    PostalCode = addr.PostalCode,
+                                    State = state.Name,
+                                    StateCode = state.StateProvinceCode,
+                                    AddressType = addtype.Name,
+                                }).ToList().FirstOrDefault();
+                if (userInfo != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, userInfo);
                 }
@@ -469,12 +472,58 @@ namespace DhonniMeyeAPI.Controllers
                 }
 
 
-                
-            }
-               
-            
-        }
 
+            }
+
+
+        }
+        [Route("getalladdress")]
+        public HttpResponseMessage GetAllAddress()
+        {
+            using (TheDBEntities db = new TheDBEntities())
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+
+                var userInfo = (from per in db.People
+                                    //join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
+                                join bentadd in db.BusinessEntityAddresses on per.BusinessEntityID equals bentadd.BusinessEntityID
+                                where per.rowguid.ToString() == user.Id
+                                join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
+                                join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
+                                join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
+                                //where addtype.Name == "Primary"
+                                join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
+                                select new
+                                {
+                                    Email = user.Email,
+                                    Title = per.Title,
+                                    FirstName = per.FirstName,
+                                    LastName = per.LastName,
+                                    MiddleName = per.MiddleName,
+                                    PhoneNumber = phone.PhoneNumber,
+                                    AddressLine1 = addr.AddressLine1,
+                                    AddressLine2 = addr.AddressLine2,
+                                    City = addr.City,
+                                    PostalCode = addr.PostalCode,
+                                    State = state.Name,
+                                    StateCode = state.StateProvinceCode,
+                                    AddressType = addtype.Name,
+                                }).ToList();
+                if (userInfo != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, userInfo);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
+                }
+
+
+
+            }
+
+
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

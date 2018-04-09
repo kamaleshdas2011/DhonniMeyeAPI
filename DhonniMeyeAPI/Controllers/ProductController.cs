@@ -10,6 +10,7 @@ using System.Transactions;
 namespace TheAPI.Controllers
 {
     //[Authorize]
+    [RoutePrefix("api/product")]
     public class ProductController : ApiController
     {
         // GET api/values
@@ -72,7 +73,31 @@ namespace TheAPI.Controllers
                 return db.Products.FirstOrDefault(e => e.ProductID.Equals(id));
             }
         }
-
+        [Route("productsearch/term")]
+        [HttpGet]
+        public IHttpActionResult SearchProduct(string term)
+        {
+            using (TheDBEntities db = new TheDBEntities())
+            {
+                var prodlist = (from c in db.AllProducts
+                                 where c.Name.Contains(term)
+                                 select new {
+                                     Name = c.Name,
+                                     ListPrice = c.ListPrice,
+                                     ProductID = c.ProductID,
+                                 }).ToList();
+                if (prodlist!=null)
+                {
+                    return Ok(prodlist);
+                }
+                else
+                {
+                    return NotFound();
+                }
+                
+            }
+            
+        }
         // POST api/values
         public void Post([FromBody]Product value)
         {
