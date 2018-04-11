@@ -115,6 +115,9 @@
     <Compile Include="EmailAddress.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FeatureProduct.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Illustration.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -228,6 +231,12 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SpecialOfferProduct.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StateProvince.cs">

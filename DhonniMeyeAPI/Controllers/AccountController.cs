@@ -28,9 +28,10 @@ namespace DhonniMeyeAPI.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
+        private TheDBEntities _dbContext;
         public AccountController()
         {
+            _dbContext = new TheDBEntities();
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -344,7 +345,28 @@ namespace DhonniMeyeAPI.Controllers
             {
                 return GetErrorResult(result);
             }
-
+            else
+            {
+                var newBeId = _dbContext.BusinessEntity.Max(m => m.BusinessEntityID) + 1;
+                _dbContext.BusinessEntity.Add(new BusinessEntity
+                {
+                    BusinessEntityID = newBeId,
+                    rowguid = Guid.NewGuid(),
+                    ModifiedDate = DateTime.Now
+                });
+                _dbContext.Person.Add(new Person
+                {
+                    rowguid = Guid.Parse(user.Id),
+                    ModifiedDate = DateTime.Now,
+                    EmailPromotion = 1,
+                    FirstName = "",
+                    LastName = "",
+                    NameStyle = false,
+                    PersonType = "IN",
+                    BusinessEntityID = newBeId
+                });
+                _dbContext.SaveChanges();
+            }
             return Ok<string>("success");
         }
         // POST api/Account/RegisterExternal
@@ -404,8 +426,8 @@ namespace DhonniMeyeAPI.Controllers
             // Get the existing user from the thedb "Person"
             using (TheDBEntities db = new TheDBEntities())
             {
-                var userInfo = (from per in db.People
-                                join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID
+                var userInfo = (from per in db.Person
+                                join bent in db.BusinessEntity on per.BusinessEntityID equals bent.BusinessEntityID
                                 where per.rowguid.ToString() == user.Id
                                 join bentadd in db.BusinessEntityAddresses on bent.BusinessEntityID equals bentadd.BusinessEntityID
                                 join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
@@ -437,7 +459,7 @@ namespace DhonniMeyeAPI.Controllers
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
 
-                var userInfo = (from per in db.People
+                var userInfo = (from per in db.Person
                                     //join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
                                 join bentadd in db.BusinessEntityAddresses on per.BusinessEntityID equals bentadd.BusinessEntityID
                                 where per.rowguid.ToString() == user.Id
@@ -484,7 +506,7 @@ namespace DhonniMeyeAPI.Controllers
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
 
-                var userInfo = (from per in db.People
+                var userInfo = (from per in db.Person
                                     //join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
                                 join bentadd in db.BusinessEntityAddresses on per.BusinessEntityID equals bentadd.BusinessEntityID
                                 where per.rowguid.ToString() == user.Id
