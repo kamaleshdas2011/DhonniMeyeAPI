@@ -4,72 +4,73 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d77dff3ed9b24c2dac509759b2cdaf65" Name="Diagram1" ZoomLevel="81">
+      <Diagram DiagramId="dd6aa15677714ed6bea4f08392d8cf3b" Name="Diagram1">
         <EntityTypeShape EntityType="TheDBModel.Product" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheDBModel.ProductImage" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheDBModel.BillOfMaterial" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.Culture" Width="1.5" PointX="7.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TheDBModel.Document" Width="1.5" PointX="5.75" PointY="7.75" />
-        <EntityTypeShape EntityType="TheDBModel.Illustration" Width="1.5" PointX="7.75" PointY="7.75" />
-        <EntityTypeShape EntityType="TheDBModel.Location" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductCostHistory" Width="1.5" PointX="9.75" PointY="3.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductDescription" Width="1.5" PointX="9.75" PointY="6.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductDocument" Width="1.5" PointX="9.75" PointY="9.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductInventory" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductListPriceHistory" Width="1.5" PointX="11.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductModel" Width="1.5" PointX="11.75" PointY="7.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductModelIllustration" Width="1.5" PointX="11.75" PointY="10.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductModelProductDescriptionCulture" Width="1.5" PointX="4.75" PointY="12.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductPhoto" Width="1.5" PointX="6.75" PointY="12.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductProductPhoto" Width="1.5" PointX="8.75" PointY="12.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductReview" Width="1.5" PointX="13.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductSubcategory" Width="1.5" PointX="13.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TheDBModel.ScrapReason" Width="1.5" PointX="13.75" PointY="7.75" />
-        <EntityTypeShape EntityType="TheDBModel.TransactionHistory" Width="1.5" PointX="13.75" PointY="10.75" />
-        <EntityTypeShape EntityType="TheDBModel.TransactionHistoryArchive" Width="1.5" PointX="10.75" PointY="13.75" />
-        <EntityTypeShape EntityType="TheDBModel.UnitMeasure" Width="1.5" PointX="12.75" PointY="14.75" />
-        <EntityTypeShape EntityType="TheDBModel.WorkOrder" Width="1.5" PointX="14.75" PointY="14.75" />
-        <EntityTypeShape EntityType="TheDBModel.WorkOrderRouting" Width="1.5" PointX="15.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.ProductVendor" Width="1.5" PointX="0.75" PointY="15.75" />
-        <EntityTypeShape EntityType="TheDBModel.PurchaseOrderDetail" Width="1.5" PointX="2.75" PointY="15.75" />
-        <EntityTypeShape EntityType="TheDBModel.PurchaseOrderHeader" Width="1.5" PointX="4.75" PointY="15.75" />
-        <EntityTypeShape EntityType="TheDBModel.ShipMethod" Width="1.5" PointX="15.75" PointY="5.75" />
-        <EntityTypeShape EntityType="TheDBModel.Vendor" Width="1.5" PointX="6.75" PointY="15.75" />
-        <EntityTypeShape EntityType="TheDBModel.CountryRegionCurrency" Width="1.5" PointX="15.75" PointY="8.75" />
-        <EntityTypeShape EntityType="TheDBModel.CreditCard" Width="1.5" PointX="15.75" PointY="11.75" />
-        <EntityTypeShape EntityType="TheDBModel.Currency" Width="1.5" PointX="16.75" PointY="14.75" />
-        <EntityTypeShape EntityType="TheDBModel.CurrencyRate" Width="1.5" PointX="17.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.Customer" Width="1.5" PointX="17.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TheDBModel.PersonCreditCard" Width="1.5" PointX="17.75" PointY="8.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesOrderDetail" Width="1.5" PointX="8.75" PointY="17.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesOrderHeader" Width="1.5" PointX="10.75" PointY="17.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesOrderHeaderSalesReason" Width="1.5" PointX="17.75" PointY="11.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesPerson" Width="1.5" PointX="16.75" PointY="17.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesPersonQuotaHistory" Width="1.5" PointX="12.75" PointY="18.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesReason" Width="1.5" PointX="18.75" PointY="14.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesTaxRate" Width="1.5" PointX="18.75" PointY="17.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesTerritory" Width="1.5" PointX="19.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.SalesTerritoryHistory" Width="1.5" PointX="0.75" PointY="19.75" />
-        <EntityTypeShape EntityType="TheDBModel.ShoppingCartItem" Width="1.5" PointX="19.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TheDBModel.SpecialOffer" Width="1.5" PointX="19.75" PointY="7.75" />
-        <EntityTypeShape EntityType="TheDBModel.SpecialOfferProduct" Width="1.5" PointX="19.75" PointY="11.75" />
-        <EntityTypeShape EntityType="TheDBModel.Store" Width="1.5" PointX="2.75" PointY="20.75" />
-        <EntityTypeShape EntityType="TheDBModel.AllProduct" Width="1.5" PointX="5.375" PointY="20.75" />
-        <EntityTypeShape EntityType="TheDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="11.75" />
-        <EntityTypeShape EntityType="TheDBModel.AddressType" Width="1.5" PointX="13.75" PointY="21.75" />
-        <EntityTypeShape EntityType="TheDBModel.BusinessEntityAddress" Width="1.5" PointX="15.75" PointY="21.75" />
-        <EntityTypeShape EntityType="TheDBModel.BusinessEntityContact" Width="1.5" PointX="21.75" PointY="17.75" />
-        <EntityTypeShape EntityType="TheDBModel.ContactType" Width="1.5" PointX="17.75" PointY="21.75" />
-        <EntityTypeShape EntityType="TheDBModel.CountryRegion" Width="1.5" PointX="19.75" PointY="21.75" />
-        <EntityTypeShape EntityType="TheDBModel.EmailAddress" Width="1.5" PointX="21.75" PointY="20.75" />
-        <EntityTypeShape EntityType="TheDBModel.Password" Width="1.5" PointX="22.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.PersonPhone" Width="1.5" PointX="22.75" PointY="8.75" />
-        <EntityTypeShape EntityType="TheDBModel.PhoneNumberType" Width="1.5" PointX="22.75" PointY="11.75" />
-        <EntityTypeShape EntityType="TheDBModel.StateProvince" Width="1.5" PointX="0.75" PointY="23.75" />
-        <EntityTypeShape EntityType="TheDBModel.Address" Width="1.5" PointX="7.375" PointY="21.75" />
-        <EntityTypeShape EntityType="TheDBModel.FeatureProduct" Width="1.5" PointX="22.375" PointY="23.75" />
-        <EntityTypeShape EntityType="TheDBModel.BusinessEntity" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TheDBModel.Person" Width="1.5" PointX="22.375" PointY="3.75" />
+        <EntityTypeShape EntityType="TheDBModel.ProductImage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Address" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.BusinessEntity" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.BusinessEntityAddress" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Person" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.PersonPhone" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.FeatureProduct" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.AddressType" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.BusinessEntityContact" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ContactType" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.CountryRegion" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.EmailAddress" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Password" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.PhoneNumberType" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.StateProvince" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.AllProduct" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.BillOfMaterials" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Culture" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Document" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Illustration" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Location" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductCategory" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductCostHistory" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductDescription" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductDocument" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductInventory" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductListPriceHistory" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductModel" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductModelIllustration" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductModelProductDescriptionCulture" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductPhoto" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductProductPhoto" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductReview" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductSubcategory" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ScrapReason" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.TransactionHistory" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.TransactionHistoryArchive" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.UnitMeasure" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.WorkOrder" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.WorkOrderRouting" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ProductVendor" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.PurchaseOrderDetail" Width="1.5" PointX="10.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.PurchaseOrderHeader" Width="1.5" PointX="12.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ShipMethod" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Vendor" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.CountryRegionCurrency" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.CreditCard" Width="1.5" PointX="18.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Currency" Width="1.5" PointX="18.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.CurrencyRate" Width="1.5" PointX="14.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Customer" Width="1.5" PointX="18.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.PersonCreditCard" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesOrderDetail" Width="1.5" PointX="2.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesOrderHeader" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesOrderHeaderSalesReason" Width="1.5" PointX="20.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesPerson" Width="1.5" PointX="20.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesPersonQuotaHistory" Width="1.5" PointX="20.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesReason" Width="1.5" PointX="16.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesTaxRate" Width="1.5" PointX="20.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesTerritory" Width="1.5" PointX="8.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SalesTerritoryHistory" Width="1.5" PointX="18.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.ShoppingCartItem" Width="1.5" PointX="20.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SpecialOffer" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.SpecialOfferProduct" Width="1.5" PointX="22.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheDBModel.Store" Width="1.5" PointX="4.75" PointY="22.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

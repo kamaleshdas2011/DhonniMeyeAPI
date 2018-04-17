@@ -23,5 +23,9 @@ namespace DataAccess
         public System.Data.Entity.Spatial.DbGeography SpatialLocation { get; set; }
         public System.Guid rowguid { get; set; }
         public System.DateTime ModifiedDate { get; set; }
+        public string Landmark { get; set; }
+        public string AlternatePhoneNumber { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

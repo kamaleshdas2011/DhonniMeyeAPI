@@ -18,13 +18,13 @@ namespace DataAccess
         public string ProductSKU { get; set; }
         public double ProductPrice { get; set; }
         public double ProductWeight { get; set; }
-        public string ProductThumb { get; set; }
-        public string ProductImage { get; set; }
         public Nullable<int> ProductCategoryID { get; set; }
         public string ProductLocation { get; set; }
         public string ProductLongDesc { get; set; }
         public string ProductShortDesc { get; set; }
         public string ProductName { get; set; }
         public string ProductCartDesc { get; set; }
+        public string ProductImage { get; set; }
+        public string ProductThumb { get; set; }
     }
 }

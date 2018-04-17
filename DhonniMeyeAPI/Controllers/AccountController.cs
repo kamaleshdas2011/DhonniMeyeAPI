@@ -402,6 +402,96 @@ namespace DhonniMeyeAPI.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("addnewaddress")]
+        public IHttpActionResult AddAddress(UserAddress address)
+        {
+
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                var userid = user.Id;
+                var beid = _dbContext.Person.Where(p => p.rowguid.ToString() == userid).ToList().FirstOrDefault().BusinessEntityID;
+
+                var newAddId = _dbContext.BusinessEntityAddress.Max(p => p.AddressID) + 1;
+
+                _dbContext.BusinessEntityAddress.Add(new BusinessEntityAddress
+                {
+                    AddressID = newAddId,
+                    BusinessEntityID = beid,
+                    AddressTypeID = address.AddressTypeID,
+                    ModifiedDate = DateTime.Now,
+                    rowguid = Guid.NewGuid(),
+                });
+                _dbContext.Address.Add(new Address
+                {
+                    AddressID = newAddId,
+                    AddressLine1 = address.AddressLine1,
+                    AddressLine2 = address.AddressLine2,
+                    City = address.City,
+                    PostalCode = address.PostalCode,
+                    StateProvinceID = address.StateProvinceID,
+                    ModifiedDate = DateTime.Now,
+                    rowguid = Guid.NewGuid(),
+                    AlternatePhoneNumber=address.AlternatePhoneNumber,
+                    Landmark=address.Landmark,
+                    Name=address.Name,
+                    PhoneNumber=address.PhoneNumber
+                });
+                _dbContext.SaveChanges();
+                return Ok("Success");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet]
+        [Route("getaddresstypes")]
+        public IHttpActionResult GetAddressTypes()
+        {
+            var types = (from add in _dbContext.AddressType
+                         where add.Name == "Home" || add.Name == "Office"
+                         select new
+                         {
+                             Name = add.Name,
+                             Code = add.AddressTypeID
+                         });
+            if (types!=null)
+            {
+                return Ok(types);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        [Route("getstates")]
+        public IHttpActionResult GetStates()
+        {
+            var states = (from add in _dbContext.StateProvince
+                          where add.CountryRegionCode == "IN"
+                          orderby add.Name
+                          select new
+                          {
+                              Name = add.Name,
+                              Code = add.StateProvinceCode
+                          });
+            if (states != null)
+            {
+                return Ok(states);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
         [Route("editaccount")]
         public async Task<IHttpActionResult> EditAccount(UserUpdateModel model)
         {
@@ -411,9 +501,8 @@ namespace DhonniMeyeAPI.Controllers
             }
 
             // Get the existing user from the userdb
-            //var user = User.Identity
-            // Get the current application user
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var userid = user.Id;
             user.UserName = model.Email;
             user.Email = model.Email;
             user.FirstName = model.FirstName;
@@ -423,27 +512,44 @@ namespace DhonniMeyeAPI.Controllers
 
             var result = await UserManager.UpdateAsync(user);
 
-            // Get the existing user from the thedb "Person"
-            using (TheDBEntities db = new TheDBEntities())
-            {
-                var userInfo = (from per in db.Person
-                                join bent in db.BusinessEntity on per.BusinessEntityID equals bent.BusinessEntityID
-                                where per.rowguid.ToString() == user.Id
-                                join bentadd in db.BusinessEntityAddresses on bent.BusinessEntityID equals bentadd.BusinessEntityID
-                                join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
-                                join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
-                                join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
-                                join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
-                                select per).ToList().FirstOrDefault();
-                //userInfo. = "";
 
-            }
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
+            else
+            {
+                // udate the existing user from the thedb "Person"
+                //var userid = user.Id;
+                //var beid = 1;//(from per in db.Person where per.rowguid.ToString() == User.Identity.GetUserId() select per).FirstOrDefault().BusinessEntityID;
+                var beid = _dbContext.Person.Where(p => p.rowguid.ToString() == userid).ToList().FirstOrDefault().BusinessEntityID;
 
+                //update person basic
+                var person = _dbContext.Person.Where(p => p.rowguid.ToString() == user.Id).FirstOrDefault();
+                person.FirstName = model.FirstName;
+                person.MiddleName = model.MiddleName;
+                person.LastName = model.LastName;
+
+                //insert/update phone details
+                if (_dbContext.PersonPhone.Any(m => m.BusinessEntityID == beid))
+                {
+                    var ph = _dbContext.PersonPhone.Where(m => m.BusinessEntityID == beid).FirstOrDefault();
+                    ph.PhoneNumber = model.PhoneNumber;
+                }
+                else
+                {
+                    _dbContext.PersonPhone.Add(new PersonPhone
+                    {
+                        BusinessEntityID = beid,
+                        ModifiedDate = DateTime.Now,
+                        PhoneNumber = model.PhoneNumber,
+                        PhoneNumberTypeID = 1,
+                    });
+                }
+                _dbContext.SaveChanges();
+                //insert/update address
+            }
             return Ok<string>("success");
 
 
@@ -459,15 +565,25 @@ namespace DhonniMeyeAPI.Controllers
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
 
-                var userInfo = (from per in db.Person
+                var userInfo = (from per in db.Person.Where(p => p.rowguid.ToString() == user.Id)
                                     //join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
-                                join bentadd in db.BusinessEntityAddresses on per.BusinessEntityID equals bentadd.BusinessEntityID
-                                where per.rowguid.ToString() == user.Id
-                                join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
-                                join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
-                                join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
-                                where addtype.Name == "Primary"
-                                join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
+                                join bentadd in db.BusinessEntityAddress on per.BusinessEntityID equals bentadd.BusinessEntityID
+                                into left1
+                                from lef1 in left1.DefaultIfEmpty()
+                                    //where per.rowguid.ToString() == user.Id
+                                //join addr in db.Addresses on lef1.AddressID equals addr.AddressID
+                                //into left2
+                                //from lef2 in left2.DefaultIfEmpty()
+                                join phone in db.PersonPhone on per.BusinessEntityID equals phone.BusinessEntityID
+                                into left3
+                                from lef3 in left3.DefaultIfEmpty()
+                                join addtype in db.AddressType on lef1.AddressTypeID equals addtype.AddressTypeID
+                                into left4
+                                from lef4 in left4.DefaultIfEmpty()
+                                    //where lef4.Name == "Primary"
+                                //join state in db.StateProvinces on lef2.StateProvinceID equals state.StateProvinceID
+                                //into left5
+                                //from lef5 in left5.DefaultIfEmpty()
                                 select new
                                 {
                                     Email = user.Email,
@@ -475,14 +591,14 @@ namespace DhonniMeyeAPI.Controllers
                                     FirstName = per.FirstName,
                                     LastName = per.LastName,
                                     MiddleName = per.MiddleName,
-                                    PhoneNumber = phone.PhoneNumber,
-                                    AddressLine1 = addr.AddressLine1,
-                                    AddressLine2 = addr.AddressLine2,
-                                    City = addr.City,
-                                    PostalCode = addr.PostalCode,
-                                    State = state.Name,
-                                    StateCode = state.StateProvinceCode,
-                                    AddressType = addtype.Name,
+                                    PhoneNumber = lef3.PhoneNumber,
+                                    //AddressLine1 = lef2.AddressLine1,
+                                    //AddressLine2 = lef2.AddressLine2,
+                                    //City = lef2.City,
+                                    //PostalCode = lef2.PostalCode,
+                                    //State = lef5.Name,
+                                    //StateCode = lef5.StateProvinceCode,
+                                    AddressType = lef4.Name,
                                 }).ToList().FirstOrDefault();
                 if (userInfo != null)
                 {
@@ -508,21 +624,21 @@ namespace DhonniMeyeAPI.Controllers
 
                 var userInfo = (from per in db.Person
                                     //join bent in db.BusinessEntities on per.BusinessEntityID equals bent.BusinessEntityID where per.rowguid.ToString() == user.Id
-                                join bentadd in db.BusinessEntityAddresses on per.BusinessEntityID equals bentadd.BusinessEntityID
+                                join bentadd in db.BusinessEntityAddress on per.BusinessEntityID equals bentadd.BusinessEntityID
                                 where per.rowguid.ToString() == user.Id
-                                join addr in db.Addresses on bentadd.AddressID equals addr.AddressID
-                                join phone in db.PersonPhones on per.BusinessEntityID equals phone.BusinessEntityID
-                                join addtype in db.AddressTypes on bentadd.AddressTypeID equals addtype.AddressTypeID
+                                join addr in db.Address on bentadd.AddressID equals addr.AddressID
+                                join phone in db.PersonPhone on per.BusinessEntityID equals phone.BusinessEntityID
+                                join addtype in db.AddressType on bentadd.AddressTypeID equals addtype.AddressTypeID
                                 //where addtype.Name == "Primary"
-                                join state in db.StateProvinces on addr.StateProvinceID equals state.StateProvinceID
+                                join state in db.StateProvince on addr.StateProvinceID equals state.StateProvinceID
                                 select new
                                 {
-                                    Email = user.Email,
-                                    Title = per.Title,
-                                    FirstName = per.FirstName,
-                                    LastName = per.LastName,
-                                    MiddleName = per.MiddleName,
-                                    PhoneNumber = phone.PhoneNumber,
+                                    //Email = user.Email,
+                                    //Title = per.Title,
+                                    FirstName = addr.Name,
+                                    //LastName = per.LastName,
+                                    //MiddleName = per.MiddleName,
+                                    PhoneNumber = addr.PhoneNumber,
                                     AddressLine1 = addr.AddressLine1,
                                     AddressLine2 = addr.AddressLine2,
                                     City = addr.City,

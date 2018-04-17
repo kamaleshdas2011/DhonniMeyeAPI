@@ -12,16 +12,11 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class BillOfMaterial
+    public partial class ProductCategory
     {
-        public int BillOfMaterialsID { get; set; }
-        public Nullable<int> ProductAssemblyID { get; set; }
-        public int ComponentID { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
-        public string UnitMeasureCode { get; set; }
-        public short BOMLevel { get; set; }
-        public decimal PerAssemblyQty { get; set; }
+        public int ProductCategoryID { get; set; }
+        public string Name { get; set; }
+        public System.Guid rowguid { get; set; }
         public System.DateTime ModifiedDate { get; set; }
     }
 }

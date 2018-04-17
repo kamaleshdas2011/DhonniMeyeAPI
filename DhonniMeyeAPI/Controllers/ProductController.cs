@@ -26,12 +26,12 @@ namespace TheAPI.Controllers
                     //var rawprod = db.AllProducts.ToList().Take(10).Skip(0);
 
                     //var model=from pm in db.ProductModels group pm by pm.ProductModelID into gr select gr.OrderBy(m=>m.ProductModelID)
-                    var prodlist = (from p in db.AllProducts
-                                    join pm in db.ProductModels on p.ProductModelID equals pm.ProductModelID
-                                    join pmx in db.ProductModelProductDescriptionCultures on pm.ProductModelID equals pmx.ProductModelID
-                                    join pd in db.ProductDescriptions on pmx.ProductDescriptionID equals pd.ProductDescriptionID
-                                    join map in db.ProductProductPhotoes on p.ProductID equals map.ProductID
-                                    join ph in db.ProductPhotoes on map.ProductPhotoID equals ph.ProductPhotoID
+                    var prodlist = (from p in db.AllProduct
+                                    join pm in db.ProductModel on p.ProductModelID equals pm.ProductModelID
+                                    join pmx in db.ProductModelProductDescriptionCulture on pm.ProductModelID equals pmx.ProductModelID
+                                    join pd in db.ProductDescription on pmx.ProductDescriptionID equals pd.ProductDescriptionID
+                                    join map in db.ProductProductPhoto on p.ProductID equals map.ProductID
+                                    join ph in db.ProductPhoto on map.ProductPhotoID equals ph.ProductPhotoID
                                     where ph.LargePhotoFileName != "no_image_available_large.gif" && pmx.CultureID == "en"
                                     //group new { p, pm, pmx, pd, map, ph } by new { pm.ProductModelID } into result
                                     //from res in result
@@ -75,7 +75,7 @@ namespace TheAPI.Controllers
         {
             using (TheDBEntities db = new TheDBEntities())
             {
-                return db.Products.FirstOrDefault(e => e.ProductID.Equals(id));
+                return db.Product.FirstOrDefault(e => e.ProductID.Equals(id));
             }
         }
         [Route("productsearch/term")]
@@ -84,7 +84,7 @@ namespace TheAPI.Controllers
         {
             using (TheDBEntities db = new TheDBEntities())
             {
-                var prodlist = (from c in db.AllProducts
+                var prodlist = (from c in db.AllProduct
                                 where c.Name.Contains(term)
                                 select new
                                 {
@@ -109,7 +109,7 @@ namespace TheAPI.Controllers
         {
             using (TheDBEntities db = new TheDBEntities())
             {
-                db.Products.Add(value);
+                db.Product.Add(value);
                 db.SaveChanges();
             }
         }
@@ -121,7 +121,7 @@ namespace TheAPI.Controllers
             {
                 using (TheDBEntities db = new TheDBEntities())
                 {
-                    var prod = db.Products.FirstOrDefault(m => m.ProductID.Equals(id));
+                    var prod = db.Product.FirstOrDefault(m => m.ProductID.Equals(id));
                     if (prod != null)
                     {
                         prod.ProductPrice = value.ProductPrice;
@@ -150,10 +150,10 @@ namespace TheAPI.Controllers
             {
                 using (TheDBEntities db = new TheDBEntities())
                 {
-                    var prod = db.Products.FirstOrDefault(m => m.ProductID.Equals(id));
+                    var prod = db.Product.FirstOrDefault(m => m.ProductID.Equals(id));
                     if (prod != null)
                     {
-                        db.Products.Remove(prod);
+                        db.Product.Remove(prod);
                         db.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK);
                     }

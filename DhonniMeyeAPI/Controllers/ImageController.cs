@@ -18,12 +18,12 @@ namespace DhonniMeyeAPI.Controllers
             {
                 if (imageType.ToLower().Equals("details"))
                 {
-                    var images = (from img in db.ProductImages where img.ProductID == id && img.ImageType == imageType select img).OrderBy(m=>m.ProductID).ToList();
+                    var images = (from img in db.ProductImage where img.ProductID == id && img.ImageType == imageType select img).OrderBy(m=>m.ProductID).ToList();
                     return images;
                 }
                 else
                 {
-                    var images = (from img in db.ProductImages where img.ImageType == imageType select img).OrderBy(m => m.ProductID).ToList();
+                    var images = (from img in db.ProductImage where img.ImageType == imageType select img).OrderBy(m => m.ProductID).ToList();
                     return images;
                 }
                 
