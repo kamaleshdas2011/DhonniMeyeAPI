@@ -19,6 +19,8 @@ using DhonniMeyeAPI.Results;
 using DataAccess;
 using System.Linq;
 using System.Net;
+using System.Data.Entity;
+using System.Threading;
 
 namespace DhonniMeyeAPI.Controllers
 {
@@ -29,9 +31,12 @@ namespace DhonniMeyeAPI.Controllers
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
         private TheDBEntities _dbContext;
+        private string _userId;
+
         public AccountController()
         {
             _dbContext = new TheDBEntities();
+            
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -480,7 +485,8 @@ namespace DhonniMeyeAPI.Controllers
                           select new
                           {
                               Name = add.Name,
-                              Code = add.StateProvinceCode
+                              Code = add.StateProvinceCode,
+                              Id=add.StateProvinceID
                           });
             if (states != null)
             {
@@ -551,13 +557,38 @@ namespace DhonniMeyeAPI.Controllers
                 //insert/update address
             }
             return Ok<string>("success");
-
-
-
-
-
         }
+        public IHttpActionResult EditAddress(UserAddress address)
+        {
+            try
+            {
+                _userId = UserManager.FindById(User.Identity.GetUserId()).Id;
+                return Ok();
 
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+        [Route("deleteaddress/{addressID}")]
+        public IHttpActionResult DeleteAddress(int addressID)
+        {
+            try
+            {
+                _userId = UserManager.FindById(User.Identity.GetUserId()).Id;
+                _dbContext.Entry(_dbContext.Address.Where(m => m.AddressID == addressID).FirstOrDefault()).State = EntityState.Deleted;
+                _dbContext.SaveChanges();
+                return Ok();
+
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
         [Route("accountinfo")]
         public HttpResponseMessage GetAccountInfo()
         {
@@ -618,6 +649,7 @@ namespace DhonniMeyeAPI.Controllers
         [Route("getalladdress")]
         public HttpResponseMessage GetAllAddress()
         {
+            Thread.Sleep(5000);
             using (TheDBEntities db = new TheDBEntities())
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
@@ -646,6 +678,7 @@ namespace DhonniMeyeAPI.Controllers
                                     State = state.Name,
                                     StateCode = state.StateProvinceCode,
                                     AddressType = addtype.Name,
+                                    AddressID = addr.AddressID,
                                 }).ToList();
                 if (userInfo != null)
                 {
@@ -662,6 +695,7 @@ namespace DhonniMeyeAPI.Controllers
 
 
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
