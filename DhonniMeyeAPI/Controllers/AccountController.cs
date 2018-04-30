@@ -649,7 +649,7 @@ namespace DhonniMeyeAPI.Controllers
         [Route("getalladdress")]
         public HttpResponseMessage GetAllAddress()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             using (TheDBEntities db = new TheDBEntities())
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
